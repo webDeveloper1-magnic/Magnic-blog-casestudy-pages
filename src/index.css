@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Nunito:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-white font-body text-ink-light antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading text-ink;
+    text-wrap: balance;
+  }
+  :focus-visible {
+    @apply outline-none ring-2 ring-accent ring-offset-2;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-content px-5 sm:px-6 lg:px-8;
+  }
+  /* Matches the live site: 12px, 700, 3px tracking */
+  .eyebrow {
+    @apply font-heading text-xs font-bold uppercase tracking-[0.25em] text-teal;
+  }
+  /* Live-site card: 16px radius, #e8eaf0 hairline, soft ambient shadow */
+  .card {
+    @apply overflow-hidden rounded-card border border-line bg-white shadow-card transition duration-300;
+  }
+  .card-hover {
+    @apply hover:-translate-y-1 hover:border-primary/25 hover:shadow-card-hover;
+  }
+  .section-title {
+    @apply font-heading font-bold text-primary;
+  }
+  /* Live-site buttons: 4px radius, 12px/28px, 13px, 1px tracking */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded bg-primary px-7 py-3 font-heading text-[13px] font-semibold uppercase tracking-[0.08em] text-white transition duration-300 hover:bg-primary-2 hover:shadow-card-hover;
+  }
+  .btn-accent {
+    @apply inline-flex items-center justify-center gap-2 rounded bg-accent px-7 py-3 font-heading text-[13px] font-semibold uppercase tracking-[0.08em] text-primary transition duration-300 hover:brightness-95;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded border border-line-strong bg-white px-7 py-3 font-heading text-[13px] font-semibold uppercase tracking-[0.08em] text-primary transition duration-300 hover:border-primary hover:bg-surface;
+  }
+}
+
+@layer utilities {
+  /* Scroll reveal — opt-in per element, disabled under reduced-motion */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.7s ease,
+      transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+  /* Revealed without animating — used when a transition cannot run (hidden tab). */
+  .reveal.is-instant {
+    transition: none;
+  }
+
+  /* Scroller keeps its own edge fades as the affordance, so hide the native bar. */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch; /* momentum scrolling on iOS */
+    overscroll-behavior-x: contain; /* swiping the tabs must not navigate back */
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal.is-visible {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
