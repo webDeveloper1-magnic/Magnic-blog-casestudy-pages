@@ -256,7 +256,9 @@ function ProblemSolutionsSection({ section }) {
               </div>
               <div className="mt-3 border-l-2 border-accent pl-4">
                 <span className="font-heading text-[10px] font-bold uppercase tracking-[0.12em] text-primary">
-                  How FIDM solves it
+                  {/* Per-post label: this section is used by FIDM and every EasyCLIQ
+                      post, so it must not hardcode a product name. */}
+                  {section.solutionLabel ?? 'The solution'}
                 </span>
                 <p className="mt-1 text-[13.5px] font-medium leading-relaxed text-ink">
                   {item.solution}
@@ -342,7 +344,23 @@ export default function BlogPostPage() {
 
   if (!post) return <NotFound />
 
-  const related = posts.filter((p) => p.slug !== post.slug).slice(0, 3)
+  // Score by relatedness rather than array order, otherwise every article offers the
+  // same three oldest entries regardless of subject.
+  const related = posts
+    .filter((p) => p.slug !== post.slug)
+    .map((p) => {
+      let score = 0
+      if (p.category === post.category) score += 5
+      const postTabs = [post.category, ...(post.also ?? [])]
+      const otherTabs = [p.category, ...(p.also ?? [])]
+      if (otherTabs.some((t) => postTabs.includes(t))) score += 2
+      const shared = (p.tags ?? []).filter((t) => (post.tags ?? []).includes(t)).length
+      score += shared * 3
+      return { post: p, score }
+    })
+    .sort((a, b) => b.score - a.score || new Date(b.post.date) - new Date(a.post.date))
+    .slice(0, 3)
+    .map((r) => r.post)
   const hasVideos = post.videos?.length > 0
   const isPhotoHero = post.heroStyle === 'cover'
 
@@ -423,7 +441,7 @@ export default function BlogPostPage() {
         </div>
       </section>
 
-      <article className="container-page py-10 md:py-14">
+      <article className="container-page py-8 md:py-10">
         {/* Two columns only when there is a video rail to fill the second one.
             Without videos the content centres instead of leaving a dead gutter. */}
         <div
@@ -505,7 +523,10 @@ export default function BlogPostPage() {
                   {p.title}
                 </h3>
                 <p className="mt-2 flex-1 text-sm leading-relaxed">{p.excerpt}</p>
-                <span className="mt-4 text-xs text-ink-light">{p.dateLabel}</span>
+                {/* Archive entries with no recorded date must not ship an empty element. */}
+                {p.dateLabel && (
+                  <span className="mt-4 text-xs text-ink-light">{p.dateLabel}</span>
+                )}
               </Link>
             ))}
           </div>

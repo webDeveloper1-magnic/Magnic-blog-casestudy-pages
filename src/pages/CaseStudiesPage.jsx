@@ -181,10 +181,11 @@ function CaseStudyCard({ study }) {
             </div>
           </div>
 
-          <div className="mt-7 grid grid-cols-3 divide-x divide-line overflow-hidden rounded-card border border-line bg-surface">
+          {/* Stacks below sm: three columns clip word-values like "Repeatable" on a 320px screen. */}
+          <div className="mt-7 grid grid-cols-1 divide-y divide-line overflow-hidden rounded-card border border-line bg-surface sm:grid-cols-3 sm:divide-x sm:divide-y-0">
             {study.metrics.map((m) => (
               <div key={m.label} className="px-3 py-5 text-center">
-                <div className="font-heading text-lg font-extrabold tabular-nums text-primary md:text-xl">
+                <div className="break-words font-heading text-lg font-extrabold tabular-nums text-primary md:text-xl">
                   {m.value}
                 </div>
                 <div className="mt-1 text-[11px] uppercase tracking-wide text-ink-light">
@@ -194,12 +195,16 @@ function CaseStudyCard({ study }) {
             ))}
           </div>
 
-          <blockquote className="mt-7 rounded-card border border-line border-l-[4px] border-l-primary bg-surface px-6 py-5">
-            <p className="text-[15px] italic leading-relaxed text-ink">“{study.quote}”</p>
-            <footer className="mt-3 text-xs font-semibold uppercase tracking-wide text-ink-light">
-              {study.quoteAttribution ?? `${study.person}, ${study.role} — ${study.company}`}
-            </footer>
-          </blockquote>
+          {/* Only render a blockquote when we hold the customer's actual words.
+              Stories without one let the video speak for itself. */}
+          {study.quote && (
+            <blockquote className="mt-7 rounded-card border border-line border-l-[4px] border-l-primary bg-surface px-6 py-5">
+              <p className="text-[15px] italic leading-relaxed text-ink">“{study.quote}”</p>
+              <footer className="mt-3 text-xs font-semibold uppercase tracking-wide text-ink-light">
+                {study.quoteAttribution ?? `${study.person}, ${study.role} — ${study.company}`}
+              </footer>
+            </blockquote>
+          )}
         </div>
 
         <div className="lg:pt-1">
@@ -214,7 +219,7 @@ function CaseStudyCard({ study }) {
 function LogoWall() {
   return (
     <section className="border-t border-line bg-surface">
-      <div className="container-page py-12 md:py-16">
+      <div className="container-page py-10 md:py-12">
         <Reveal>
           <p className="eyebrow">Trusted by</p>
           <h2 className="mt-2 font-heading text-2xl font-bold text-primary md:text-[28px]">
@@ -280,7 +285,8 @@ export default function CaseStudiesPage() {
         description="Real deployments from retailers, manufacturers and hallmarking centres — the bottleneck they had, the machine they chose, and the result in their own words."
       />
 
-      <section className="container-page py-12 md:py-16">
+      {/* Matches the Blog page's rhythm exactly so both headers read identically. */}
+      <section className="container-page py-7 md:py-9">
         <div className="mb-8 flex flex-col gap-3">
           <ScrollTabs
             options={industries}
@@ -336,7 +342,7 @@ export default function CaseStudiesPage() {
 
       <StatsBand />
 
-      <div className="pt-14">
+      <div className="pt-8">
         <DemoCta
           title="Ready to see the same results?"
           body="Book a demo and we'll photograph your own jewellery — or scan your own stock for ferrous contamination — before you commit to anything."

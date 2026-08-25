@@ -36,9 +36,15 @@ export default function Reveal({ children, delay = 0, className = '', as: Tag = 
       setVisible(true)
     }
 
+    // Declared before the observer so the callback can cancel it on a real reveal.
+    let failsafe = null
+
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
+          // Cancel the failsafe first, or it fires later and swaps the element to
+          // `is-instant`, killing the transition mid-animation.
+          clearTimeout(failsafe)
           show()
           io.disconnect()
         }
@@ -57,7 +63,7 @@ export default function Reveal({ children, delay = 0, className = '', as: Tag = 
     document.addEventListener('visibilitychange', onVisibilityChange)
 
     // Last-resort guard so content can never be stranded at opacity 0.
-    const failsafe = setTimeout(showInstantly, 3000)
+    failsafe = setTimeout(showInstantly, 3000)
 
     return () => {
       io.disconnect()

@@ -125,22 +125,12 @@ export default function BlogPage() {
         description="Product launches, exhibitions, awards and practical guides from the team that designs and builds the machines."
       />
 
-      <section className="container-page py-10 md:py-12">
-        {/* Tabs and search share one row and one baseline, so the underline runs
-            continuously beneath both instead of leaving a gap above the tabs. */}
-        <div className="mb-7 border-b border-line">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
-            <div className="min-w-0 flex-1">
-              <ScrollTabs
-                options={categories}
-                active={active}
-                onSelect={setActive}
-                label="Filter articles by category"
-                bordered={false}
-              />
-            </div>
-
-            <div className="pb-3 sm:w-64 sm:shrink-0">
+      <section className="container-page py-7 md:py-9">
+        {/* Search sits on its own line above the tabs. Side by side it stole 256px
+            from the tab row, which clipped the last category at every viewport. */}
+        <div className="mb-7">
+          <div className="flex flex-col gap-2">
+            <div className="w-full sm:w-64 sm:self-end">
               <label htmlFor="blog-search" className="sr-only">
                 Search articles
               </label>
@@ -192,6 +182,14 @@ export default function BlogPage() {
                 )}
               </div>
             </div>
+
+            {/* Full row width, so no category is ever clipped. */}
+            <ScrollTabs
+              options={categories}
+              active={active}
+              onSelect={setActive}
+              label="Filter articles by category"
+            />
           </div>
         </div>
 
@@ -250,7 +248,7 @@ export default function BlogPage() {
         )}
       </section>
 
-      <div className="pt-10">
+      <div className="pt-6">
         <DemoCta />
       </div>
     </>

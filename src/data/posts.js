@@ -1,10 +1,13 @@
 // Content mirrors what is actually published on magnic.in/blog.
 // Add new entries here as real articles go live.
 
-export const categories = [
+// Every tab that can appear, in display order. `categories` below is filtered down
+// to those a post actually uses, so a tab can never render an empty result set.
+const CATEGORY_LABELS = [
   { slug: 'all', label: 'All Articles' },
   { slug: 'news', label: 'Latest News' },
   { slug: 'product-launches', label: 'Product Launches' },
+  { slug: 'guides', label: 'Guides & Comparisons' },
   { slug: 'exhibitions', label: 'Exhibitions & Events' },
   { slug: 'awards', label: 'Awards & Achievements' },
 ]
@@ -254,7 +257,7 @@ export const posts = [
           { src: '/images/expo/fidm.webp', alt: 'Ferrous Particle Detector Machine' },
           { src: '/images/expo/mini.png', alt: 'EasyCLIQ MINI' },
           { src: '/images/expo/x1.png', alt: 'EasyCLIQ X1' },
-          { src: '/images/expo/x3.png', alt: 'EasyCLIQ X3' },
+          { src: '/images/articles/price-x3.png', alt: 'EasyCLIQ X3' },
         ],
       },
       {
@@ -308,7 +311,7 @@ export const posts = [
     dateLabel: '25 Jan 2020',
     readingTime: 2,
     author: 'Magnic Team',
-    image: '/images/fidm/v4-standard.webp',
+    image: '/images/expo/fidm.webp',
     imageAlt: 'Magnic Ferrous Particle Detector Machine V4.0 Standard',
     // Titles taken from the actual YouTube listings.
     videos: [
@@ -408,6 +411,7 @@ export const posts = [
       {
         type: 'problemsolutions',
         heading: 'Every part of the machine answers a problem from the floor',
+        solutionLabel: 'How FIDM solves it',
         intro:
           'None of this was designed in the abstract. Each capability exists because a jeweller ran into a specific wall.',
         items: [
@@ -493,7 +497,7 @@ export const posts = [
         tables: [
           {
             title: 'V4.0 Standard',
-            image: '/images/fidm/v4-standard.webp',
+            image: '/images/expo/fidm.webp',
             imageAlt: 'FIDM V4.0 Standard',
             rows: [
               ['Checking Time', '3 sec/component (Dual scan)'],
@@ -531,7 +535,7 @@ export const posts = [
     dateLabel: '08 Aug 2022',
     readingTime: 4,
     author: 'Magnic Team',
-    image: '/images/holo/studio.webp',
+    image: '/images/expo/holo.webp',
     imageAlt: 'EasyCLIQ HOLO 360° jewellery photography studio',
     // Titles taken from the actual YouTube listings.
     videos: [
@@ -671,7 +675,7 @@ export const posts = [
               'Cutting the background from every image was a routine, unavoidable cost that scaled directly with catalogue size.',
             solution:
               'The background is removed precisely on every capture and the image sharpened to global ecommerce standards, with no manual step.',
-            image: '/images/holo/background-removal.webp',
+            image: '/images/articles/cmp-bg-removal.webp',
           },
           {
             title: 'Publish — Direct Export',
@@ -689,7 +693,7 @@ export const posts = [
         tables: [
           {
             title: 'EasyCLIQ HOLO',
-            image: '/images/holo/studio.webp',
+            image: '/images/expo/holo.webp',
             imageAlt: 'EasyCLIQ HOLO studio',
             rows: [
               ['LED CRI', '90+'],
@@ -719,7 +723,7 @@ export const posts = [
     dateLabel: '29 May 2026',
     readingTime: 4,
     author: 'Magnic Team',
-    image: '/images/mini/front-view.png',
+    image: '/images/expo/mini.png',
     imageAlt: 'EasyCLIQ MINI compact jewellery photography studio',
     // Title taken from the actual YouTube listing.
     videos: [
@@ -911,7 +915,7 @@ export const posts = [
         tables: [
           {
             title: 'EasyCLIQ MINI',
-            image: '/images/mini/front-view.png',
+            image: '/images/expo/mini.png',
             imageAlt: 'EasyCLIQ MINI',
             rows: [
               ['Power Supply', '230V | 50Hz | 1 Phase'],
@@ -940,7 +944,7 @@ export const posts = [
     dateLabel: '06 Jul 2026',
     readingTime: 5,
     author: 'Magnic Team',
-    image: '/images/x1/front-view.png',
+    image: '/images/expo/x1.png',
     imageAlt: 'EasyCLIQ X1 AI-powered robotic jewellery photography studio',
     // Titles taken from the actual YouTube listings.
     videos: [
@@ -1068,7 +1072,7 @@ export const posts = [
               'A necklace photographed flat does not show how it hangs, and any stand used to lift it ends up in the frame.',
             solution:
               'A dedicated top turntable suspends pendants, necklaces and earrings in mid-air — no stand, no support arm, just the jewellery, perfectly centred.',
-            image: '/images/x1/hw-top-turntable.webp',
+            image: '/images/mini/dual-turntable-system.webp',
           },
           {
             title: '360° Top & Bottom Turntable',
@@ -1108,7 +1112,7 @@ export const posts = [
               'Rebuilding the light and camera setup for each product category wasted time and reintroduced drift between batches.',
             solution:
               'Save all light settings, colour temperatures and robotic camera positions per category, then recall the exact setup with one click.',
-            image: '/images/x1/sw-template-making.webp',
+            image: '/images/mini/sw-template-making.webp',
           },
           {
             title: 'Web-Ready Publish Page',
@@ -1116,7 +1120,7 @@ export const posts = [
               'Finished images still needed resizing, compressing and naming before a single one could be uploaded.',
             solution:
               'Automatic resizing, compression and barcode-tagged file saving — images are platform-ready the moment you hit Publish.',
-            image: '/images/x1/sw-web-ready-publish.webp',
+            image: '/images/mini/sw-web-ready-publish.webp',
           },
         ],
       },
@@ -1126,7 +1130,7 @@ export const posts = [
         tables: [
           {
             title: 'EasyCLIQ X1',
-            image: '/images/x1/front-view.png',
+            image: '/images/expo/x1.png',
             imageAlt: 'EasyCLIQ X1',
             rows: [
               ['Power Supply', '230V | 50Hz | 1 Phase | 1300W'],
@@ -1156,7 +1160,7 @@ export const posts = [
     dateLabel: '03 Feb 2026',
     readingTime: 5,
     author: 'Magnic Team',
-    image: '/images/x3/front-view.png',
+    image: '/images/articles/price-x3.png',
     imageAlt: 'EasyCLIQ X3 large-format AI robotic product photography studio',
     // Titles taken from the actual YouTube listings.
     videos: [
@@ -1325,7 +1329,7 @@ export const posts = [
               'Showing a piece worn meant a second production — a model, a photographer and studio time on top of the product shoot.',
             solution:
               'The AI places the ornament onto a model in software, so the worn view comes out of the same capture as the product shot.',
-            image: '/images/x3/ai-software.webp',
+            image: '/images/mini/ai-powered-software.webp',
           },
           {
             title: 'AI-Powered Background Removal',
@@ -1333,7 +1337,7 @@ export const posts = [
               'Across a mixed catalogue, cutting out every image was the single largest recurring cost of going online.',
             solution:
               'AI removal with proprietary Light Mask technology produces a precise cutout on every capture, whatever the product category.',
-            image: '/images/x3/bg-removal-before-after.webp',
+            image: '/images/mini/bg-removal-before-after.webp',
           },
           {
             title: 'Template Making',
@@ -1341,7 +1345,7 @@ export const posts = [
               'Switching between product categories meant rebuilding the lighting and camera setup, and drifting from the last batch.',
             solution:
               'Save light settings, colour temperatures and robotic camera positions per category, and recall the exact setup with one click.',
-            image: '/images/x3/sw-template-making.webp',
+            image: '/images/mini/sw-template-making.webp',
           },
         ],
       },
@@ -1351,7 +1355,7 @@ export const posts = [
         tables: [
           {
             title: 'EasyCLIQ X3',
-            image: '/images/x3/front-view.png',
+            image: '/images/articles/price-x3.png',
             imageAlt: 'EasyCLIQ X3',
             rows: [
               ['Power Supply', '230V | 50Hz | 1 Phase | 1600W'],
@@ -1376,6 +1380,7 @@ export const posts = [
       'What does a jewellery photography machine cost in 2026? Market price tiers, EasyCLIQ MINI, X1, X3 and HOLO prices, hidden costs, and how to calculate the ROI.',
     category: 'buying-guide',
     categoryLabel: 'Buying Guide',
+    also: ['guides'],
     date: '2026-06-26',
     dateLabel: '26 Jun 2026',
     readingTime: 11,
@@ -1463,6 +1468,7 @@ export const posts = [
       'Compare EasyCLIQ, GemLightbox and Orbitvu Micro jewellery photography studios on capacity, 360° video, AI editing, price and support to choose the right one.',
     category: 'comparison',
     categoryLabel: 'Comparison',
+    also: ['guides'],
     date: '2026-06-28',
     dateLabel: '28 Jun 2026',
     readingTime: 9,
@@ -1566,6 +1572,7 @@ export const posts = [
       'How to photograph large Indian bridal jewellery and long haarams in true colour — lighting, background, framing, and an automated studio that does it in minutes.',
     category: 'how-to',
     categoryLabel: 'How-To',
+    also: ['guides'],
     date: '2026-06-27',
     dateLabel: '27 Jun 2026',
     readingTime: 8,
@@ -1640,6 +1647,14 @@ export const posts = [
 
 export const featuredPost = posts.find((p) => p.featured) ?? posts[0]
 
+// Only surface tabs that at least one post can actually fill. Hand-maintaining this
+// list is what left "Hallmarking Centres" permanently empty and hid three articles.
+const USED_SLUGS = new Set(posts.flatMap((p) => [p.category, ...(p.also ?? [])]))
+
+export const categories = CATEGORY_LABELS.filter(
+  (c) => c.slug === 'all' || USED_SLUGS.has(c.slug),
+)
+
 /**
  * Flatten everything a reader can actually see on a post into one lowercase string,
  * so search covers body copy, section content, specs and tags — not just the title.
@@ -1671,7 +1686,7 @@ function buildSearchText(post) {
     }
   }
 
-  return parts.filter(Boolean).join('   ').toLowerCase()
+  return parts.filter(Boolean).join(' | ').toLowerCase()
 }
 
 const SEARCH_INDEX = new Map(posts.map((p) => [p.slug, buildSearchText(p)]))

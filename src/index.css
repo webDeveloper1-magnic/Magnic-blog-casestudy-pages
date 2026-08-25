@@ -16,7 +16,7 @@
     text-wrap: balance;
   }
   :focus-visible {
-    @apply outline-none ring-2 ring-accent ring-offset-2;
+    @apply outline-none ring-2 ring-primary ring-offset-2;
   }
 }
 
@@ -76,6 +76,8 @@
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch; /* momentum scrolling on iOS */
     overscroll-behavior-x: contain; /* swiping the tabs must not navigate back */
+    /* Clears the 40px edge fades, so scrollIntoView never parks a tab beneath one. */
+    scroll-padding-inline: 2.5rem;
   }
   .no-scrollbar::-webkit-scrollbar {
     display: none;

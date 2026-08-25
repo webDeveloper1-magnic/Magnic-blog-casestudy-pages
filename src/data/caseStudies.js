@@ -1,14 +1,17 @@
 // Customer stories. Video IDs, titles and publish dates are taken from the
 // Magnic Technologies YouTube channel; logos from magnic.in/case-studies.
 
-export const industries = [
+// Full set of segments; `industries` below keeps only those with a published study,
+// so a filter can never land on an empty result. Hallmarking centres appear in the
+// logo wall but have no case study yet, so that tab stays hidden until one exists.
+const INDUSTRY_LABELS = [
   { slug: 'all', label: 'All Clients' },
   { slug: 'retailer', label: 'Retailers' },
   { slug: 'manufacturer', label: 'Manufacturers & Wholesalers' },
   { slug: 'hallmark', label: 'Hallmarking Centres' },
 ]
 
-export const productLines = [
+const PRODUCT_LINE_LABELS = [
   { slug: 'all-products', label: 'All Machines' },
   { slug: 'easycliq', label: 'EasyCLIQ Photography' },
   { slug: 'fidm', label: 'Ferrous Particle Detector' },
@@ -68,9 +71,6 @@ export const caseStudies = [
       { value: '< 1 mg', label: 'Iron detected' },
       { value: 'Patented', label: 'Govt. of India technology' },
     ],
-    quote:
-      'Our flagship product, the world’s first Ferrous Particle Detector Machine, solves one of the biggest problems in the gold jewellery manufacturing industry — and is recognised by the Government of India for its innovation and excellence.',
-    quoteAttribution: 'Magnic Technologies, on the Joy Alukkas deployment',
   },
   {
     slug: 'ans-jewellery',
@@ -125,9 +125,6 @@ export const caseStudies = [
       { value: '3 Sec', label: 'Dual-scan cycle time' },
       { value: 'Vendor', label: 'Incoming gold verified' },
     ],
-    quote:
-      'Ferrous Particle Detector Machine, a patented technology, is the best ever solution for you to save up your brand’s reputation, do quality gold transactions, win customer trust and satisfaction, and more importantly, reduce fake gold jewellery from your vendors and manufacturer.',
-    quoteAttribution: 'Magnic Technologies, on the Sunil Jewellers deployment',
   },
   {
     slug: 'vysyaraju-jewellers',
@@ -157,9 +154,6 @@ export const caseStudies = [
       { value: 'E-comm', label: 'Shoot concept' },
       { value: 'In-house', label: 'Production' },
     ],
-    quote:
-      'Produced more enticing jewellery images with EasyCLIQ Flexi X3 — an ecommerce jewellery photoshoot conceptualised by photographer Rifaz and team.',
-    quoteAttribution: 'Vysyaraju Jewellers, Andhra Pradesh',
   },
   {
     slug: 'dvaar-silver-international',
@@ -189,8 +183,6 @@ export const caseStudies = [
       { value: 'Silver', label: 'Speciality metal' },
       { value: 'Repeatable', label: 'Across the range' },
     ],
-    quote: 'Achieved great photography results with EasyCLIQ.',
-    quoteAttribution: 'Dvaar Silver International Private Limited',
   },
   {
     slug: 'leading-studio-flexi-x3',
@@ -220,10 +212,19 @@ export const caseStudies = [
       { value: 'Volume', label: 'Built for throughput' },
       { value: 'Pro', label: 'Studio adoption' },
     ],
-    quote: 'Mastering jewellery photography with EasyCLIQ Flexi X3.',
-    quoteAttribution: "India's Leading Studio",
   },
 ]
+
+const USED_INDUSTRIES = new Set(caseStudies.map((c) => c.industry))
+const USED_LINES = new Set(caseStudies.map((c) => c.line))
+
+export const industries = INDUSTRY_LABELS.filter(
+  (i) => i.slug === 'all' || USED_INDUSTRIES.has(i.slug),
+)
+
+export const productLines = PRODUCT_LINE_LABELS.filter(
+  (l) => l.slug === 'all-products' || USED_LINES.has(l.slug),
+)
 
 // Logo wall — customers listed on magnic.in/case-studies.
 export const clientLogos = [
