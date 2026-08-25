@@ -5,7 +5,13 @@ import { useCallback, useEffect, useRef, useState } from 'react'
  * Keeps every filter on one line instead of wrapping, and fades the edges
  * only while there is more to scroll to, so the overflow is discoverable.
  */
-export default function ScrollTabs({ options, active, onSelect, label = 'Filter' }) {
+export default function ScrollTabs({
+  options,
+  active,
+  onSelect,
+  label = 'Filter',
+  bordered = true,
+}) {
   const scrollerRef = useRef(null)
   const activeRef = useRef(null)
   const [edges, setEdges] = useState({ left: false, right: false })
@@ -54,7 +60,10 @@ export default function ScrollTabs({ options, active, onSelect, label = 'Filter'
         ref={scrollerRef}
         role="tablist"
         aria-label={label}
-        className="no-scrollbar flex gap-1 overflow-x-auto border-b border-line"
+        className={[
+          'no-scrollbar flex gap-1 overflow-x-auto',
+          bordered ? 'border-b border-line' : '',
+        ].join(' ')}
       >
         {options.map((c) => {
           const isActive = active === c.slug

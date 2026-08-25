@@ -1639,3 +1639,47 @@ export const posts = [
 ]
 
 export const featuredPost = posts.find((p) => p.featured) ?? posts[0]
+
+/**
+ * Flatten everything a reader can actually see on a post into one lowercase string,
+ * so search covers body copy, section content, specs and tags — not just the title.
+ * Built once at module load rather than per keystroke.
+ */
+function buildSearchText(post) {
+  const parts = [
+    post.title,
+    post.excerpt,
+    post.categoryLabel,
+    post.author,
+    post.dateLabel,
+    ...(post.tags ?? []),
+    ...(post.body ?? []),
+    ...(post.videos ?? []).map((v) => v.title),
+  ]
+
+  for (const s of post.sections ?? []) {
+    parts.push(s.heading, s.intro)
+    parts.push(...(s.body ?? []))
+    for (const item of s.items ?? []) {
+      parts.push(item.title, item.text, item.problem, item.solution, item.value, item.label)
+    }
+    for (const pair of s.pairs ?? []) parts.push(pair.before, pair.after)
+    for (const img of s.images ?? []) parts.push(img.alt)
+    for (const t of s.tables ?? []) {
+      parts.push(t.title)
+      for (const row of t.rows ?? []) parts.push(...row)
+    }
+  }
+
+  return parts.filter(Boolean).join('   ').toLowerCase()
+}
+
+const SEARCH_INDEX = new Map(posts.map((p) => [p.slug, buildSearchText(p)]))
+
+/** True when every whitespace-separated term appears somewhere in the post. */
+export function postMatchesQuery(post, query) {
+  const terms = query.trim().toLowerCase().split(/\s+/).filter(Boolean)
+  if (!terms.length) return true
+  const haystack = SEARCH_INDEX.get(post.slug) ?? ''
+  return terms.every((t) => haystack.includes(t))
+}

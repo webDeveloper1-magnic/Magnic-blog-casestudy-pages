@@ -4,7 +4,7 @@ import Reveal from '../components/Reveal'
 import ScrollTabs from '../components/ScrollTabs'
 import PageHeader from '../components/PageHeader'
 import DemoCta from '../components/DemoCta'
-import { posts, categories } from '../data/posts'
+import { posts, categories, postMatchesQuery } from '../data/posts'
 
 function CategoryPill({ label, category }) {
   const isNews = category === 'news'
@@ -93,17 +93,28 @@ export default function BlogPage() {
   const [active, setActive] = useState('all')
   const [query, setQuery] = useState('')
 
-  const visible = useMemo(() => {
-    const q = query.trim().toLowerCase()
-    return posts
-      .filter((p) =>
-        active === 'all' ? true : p.category === active || p.also?.includes(active),
-      )
-      .filter((p) =>
-        q ? p.title.toLowerCase().includes(q) || p.excerpt.toLowerCase().includes(q) : true,
-      )
-      .sort((a, b) => new Date(b.date) - new Date(a.date))
-  }, [active, query])
+  const trimmed = query.trim()
+  const inCategory = (p) =>
+    active === 'all' ? true : p.category === active || p.also?.includes(active)
+
+  const visible = useMemo(
+    () =>
+      posts
+        .filter(inCategory)
+        .filter((p) => postMatchesQuery(p, trimmed))
+        .sort((a, b) => new Date(b.date) - new Date(a.date)),
+    [active, trimmed],
+  )
+
+  // If a search returns nothing here but does match elsewhere, say so rather than
+  // leaving the reader thinking the term appears nowhere on the site.
+  const matchesOutsideCategory = useMemo(
+    () =>
+      trimmed && visible.length === 0
+        ? posts.filter((p) => postMatchesQuery(p, trimmed)).length
+        : 0,
+    [trimmed, visible.length],
+  )
 
   return (
     <>
@@ -115,27 +126,91 @@ export default function BlogPage() {
       />
 
       <section className="container-page py-10 md:py-12">
-        <div className="mb-7 flex flex-col gap-4">
-          <div className="relative sm:max-w-xs sm:self-end">
-            <label htmlFor="blog-search" className="sr-only">
-              Search articles
-            </label>
-            <input
-              id="blog-search"
-              type="search"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search articles"
-              className="w-full rounded-full border border-line bg-white px-5 py-2 text-sm outline-none transition focus:border-primary"
-            />
+        {/* Tabs and search share one row and one baseline, so the underline runs
+            continuously beneath both instead of leaving a gap above the tabs. */}
+        <div className="mb-7 border-b border-line">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
+            <div className="min-w-0 flex-1">
+              <ScrollTabs
+                options={categories}
+                active={active}
+                onSelect={setActive}
+                label="Filter articles by category"
+                bordered={false}
+              />
+            </div>
+
+            <div className="pb-3 sm:w-64 sm:shrink-0">
+              <label htmlFor="blog-search" className="sr-only">
+                Search articles
+              </label>
+              {/* This inner wrapper hugs the input exactly. The icons are centred
+                  against it, so the outer pb-3 alignment padding cannot offset them. */}
+              <div className="relative flex items-center">
+                <svg
+                  className="pointer-events-none absolute left-4 text-ink-light"
+                  width="15"
+                  height="15"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <circle cx="7" cy="7" r="5" stroke="currentColor" strokeWidth="1.6" />
+                  <path
+                    d="m11 11 4 4"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                  />
+                </svg>
+                <input
+                  id="blog-search"
+                  type="search"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder="Search articles"
+                  // appearance-none removes the native WebKit clear button, which would
+                  // otherwise sit alongside our own.
+                  className="w-full appearance-none rounded-full border border-line bg-white py-2 pl-10 pr-9 text-sm leading-5 outline-none transition focus:border-primary [&::-webkit-search-cancel-button]:appearance-none"
+                />
+                {query && (
+                  <button
+                    type="button"
+                    onClick={() => setQuery('')}
+                    aria-label="Clear search"
+                    className="absolute right-3 flex h-5 w-5 items-center justify-center rounded-full text-ink-light transition hover:bg-surface hover:text-primary"
+                  >
+                    <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
+                      <path
+                        d="M1 1l8 8M9 1L1 9"
+                        stroke="currentColor"
+                        strokeWidth="1.6"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                  </button>
+                )}
+              </div>
+            </div>
           </div>
-          <ScrollTabs
-            options={categories}
-            active={active}
-            onSelect={setActive}
-            label="Filter articles by category"
-          />
         </div>
+
+        {trimmed && (
+          <p aria-live="polite" className="mb-5 text-sm text-ink-light">
+            {visible.length > 0 ? (
+              <>
+                <span className="font-semibold text-ink">{visible.length}</span>{' '}
+                {visible.length === 1 ? 'article' : 'articles'} matching{' '}
+                <span className="font-semibold text-ink">“{trimmed}”</span>
+              </>
+            ) : (
+              <>
+                No matches for <span className="font-semibold text-ink">“{trimmed}”</span>
+                {active !== 'all' ? ' in this category' : ''}
+              </>
+            )}
+          </p>
+        )}
 
         {visible.length > 0 ? (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -149,9 +224,28 @@ export default function BlogPage() {
         ) : (
           <div className="rounded-card border border-dashed border-line-strong bg-surface px-6 py-14 text-center">
             <p className="font-heading text-base font-semibold text-ink">No articles found</p>
-            <p className="mt-2 text-sm">
-              Try a different topic or clear your search to see all {posts.length} articles.
-            </p>
+            {matchesOutsideCategory > 0 ? (
+              <>
+                <p className="mt-2 text-sm">
+                  “{trimmed}” appears in {matchesOutsideCategory}{' '}
+                  {matchesOutsideCategory === 1 ? 'article' : 'articles'} outside this category.
+                </p>
+                <button type="button" onClick={() => setActive('all')} className="btn-outline mt-5">
+                  Search all articles
+                </button>
+              </>
+            ) : (
+              <>
+                <p className="mt-2 text-sm">
+                  Try a different topic or clear your search to see all {posts.length} articles.
+                </p>
+                {trimmed && (
+                  <button type="button" onClick={() => setQuery('')} className="btn-outline mt-5">
+                    Clear search
+                  </button>
+                )}
+              </>
+            )}
           </div>
         )}
       </section>
