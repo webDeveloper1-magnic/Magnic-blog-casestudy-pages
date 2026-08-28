@@ -3,6 +3,8 @@ import { Link, useParams } from 'react-router-dom'
 import DemoCta from '../components/DemoCta'
 import Reveal from '../components/Reveal'
 import ReadingProgress from '../components/ReadingProgress'
+import useParallax from '../components/useParallax'
+import CountUp from '../components/CountUp'
 import { posts } from '../data/posts'
 
 function VideoFrame({ video }) {
@@ -166,7 +168,7 @@ function StatsSection({ section }) {
         {section.items.map((s) => (
           <div key={s.label} className="bg-white px-4 py-5 text-center">
             <div className="font-heading text-2xl font-extrabold tabular-nums text-primary">
-              {s.value}
+              <CountUp value={s.value} />
             </div>
             <div className="mt-1 text-xs leading-snug text-ink-light">{s.label}</div>
           </div>
@@ -314,7 +316,9 @@ function PostSections({ sections }) {
       {sections.map((section, i) => {
         const Renderer = SECTION_RENDERERS[section.type]
         return Renderer ? (
-          <Reveal key={i}>
+          // Alternate the entry direction so a long article does not feel like one
+          // repeated animation all the way down.
+          <Reveal key={i} variant={i % 2 === 0 ? 'up' : 'blur'}>
             <Renderer section={section} />
           </Reveal>
         ) : null
@@ -342,6 +346,10 @@ export default function BlogPostPage() {
   const { slug } = useParams()
   const post = posts.find((p) => p.slug === slug)
 
+  // Every hook must run before the not-found early return, or React throws
+  // "rendered fewer hooks than expected" the moment someone hits a bad slug.
+  const heroParallax = useParallax(0.08)
+
   if (!post) return <NotFound />
 
   // Score by relatedness rather than array order, otherwise every article offers the
@@ -367,7 +375,10 @@ export default function BlogPostPage() {
   return (
     <>
       <ReadingProgress />
-      <section className="relative overflow-hidden border-b border-line bg-gradient-to-br from-primary to-primary-2">
+      <section
+        ref={heroParallax.ref}
+        className="relative overflow-hidden border-b border-line bg-gradient-to-br from-primary to-primary-2"
+      >
         {/* Two hero treatments. A photograph fills the band edge to edge; a product
             cutout floats on the gradient, aligned to the content gutter. */}
         {post.image && isPhotoHero && (
@@ -393,9 +404,11 @@ export default function BlogPostPage() {
         {post.image && !isPhotoHero && (
           <div className="pointer-events-none absolute inset-0">
             <div className="container-page relative h-full">
+              {/* Drifts gently against the scroll for depth. Held still under
+                  reduced-motion, and the machine stays fully legible either way. */}
               <div
-                className="absolute inset-y-0 right-0 w-full bg-contain bg-center bg-no-repeat bg-origin-content px-5 opacity-25 sm:px-6 md:w-[50%] md:bg-right md:opacity-100 lg:px-8"
-                style={{ backgroundImage: `url(${post.image})` }}
+                className="parallax-layer absolute inset-y-0 right-0 w-full bg-contain bg-center bg-no-repeat bg-origin-content px-5 opacity-25 sm:px-6 md:w-[50%] md:bg-right md:opacity-100 lg:px-8"
+                style={{ backgroundImage: `url(${post.image})`, ...heroParallax.style }}
                 role="img"
                 aria-label={post.imageAlt || ''}
               />

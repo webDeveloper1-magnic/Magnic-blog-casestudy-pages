@@ -52,21 +52,51 @@
 
 @layer utilities {
   /* Scroll reveal — opt-in per element, disabled under reduced-motion */
+  /* Scroll reveal. The base class only sets opacity; a direction class supplies the
+     transform, so variants compose without duplicating the transition. */
   .reveal {
     opacity: 0;
-    transform: translateY(20px);
     transition:
       opacity 0.7s ease,
-      transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+      transform 0.75s cubic-bezier(0.22, 0.61, 0.36, 1),
+      filter 0.7s ease;
     will-change: opacity, transform;
   }
+  .reveal-up {
+    transform: translate3d(0, 26px, 0);
+  }
+  .reveal-down {
+    transform: translate3d(0, -22px, 0);
+  }
+  .reveal-left {
+    transform: translate3d(-32px, 0, 0);
+  }
+  .reveal-right {
+    transform: translate3d(32px, 0, 0);
+  }
+  .reveal-scale {
+    transform: scale(0.93);
+  }
+  .reveal-rise {
+    transform: translate3d(0, 34px, 0) scale(0.97);
+  }
+  .reveal-blur {
+    transform: translate3d(0, 18px, 0);
+    filter: blur(7px);
+  }
+
   .reveal.is-visible {
     opacity: 1;
     transform: none;
+    filter: none;
   }
   /* Revealed without animating — used when a transition cannot run (hidden tab). */
   .reveal.is-instant {
     transition: none;
+  }
+  /* Once shown, drop the compositing hint so long pages do not hold dozens of layers. */
+  .reveal.is-settled {
+    will-change: auto;
   }
 
   /* Scroller keeps its own edge fades as the affordance, so hide the native bar. */
@@ -86,9 +116,11 @@
 
 @media (prefers-reduced-motion: reduce) {
   .reveal,
-  .reveal.is-visible {
+  .reveal.is-visible,
+  .parallax-layer {
     opacity: 1 !important;
     transform: none !important;
+    filter: none !important;
     transition: none !important;
   }
 }

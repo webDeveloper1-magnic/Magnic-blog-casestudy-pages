@@ -214,7 +214,12 @@ export default function BlogPage() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {visible.map((post, i) => (
               // Stagger by column so a row appears to settle in together.
-              <Reveal key={post.slug} delay={(i % 3) * 90} className="h-full">
+              <Reveal
+                key={post.slug}
+                variant="rise"
+                delay={(i % 3) * 110}
+                className="h-full"
+              >
                 <PostCard post={post} />
               </Reveal>
             ))}

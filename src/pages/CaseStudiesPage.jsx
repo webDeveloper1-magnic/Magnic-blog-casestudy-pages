@@ -1,15 +1,19 @@
 import { useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
 import PageHeader from '../components/PageHeader'
 import DemoCta from '../components/DemoCta'
 import Reveal from '../components/Reveal'
 import ScrollTabs from '../components/ScrollTabs'
+import CountUp from '../components/CountUp'
 import {
   caseStudies,
-  industries,
+  regions,
   productLines,
   clientStats,
   clientLogos,
   hallmarkCentres,
+  interleaveByRegion,
+  launchPostHref,
 } from '../data/caseStudies'
 
 function SafeImg({ src, alt, className }) {
@@ -70,7 +74,7 @@ function StatsBand() {
             {clientStats.map((s) => (
               <div key={s.label} className="px-2 py-8 text-center md:px-6">
                 <div className="font-heading text-3xl font-extrabold tabular-nums text-primary md:text-4xl">
-                  {s.value}
+                  <CountUp value={s.value} />
                 </div>
                 <div className="mt-1 text-xs uppercase tracking-wide text-ink-light">{s.label}</div>
               </div>
@@ -136,6 +140,11 @@ function StoryVideo({ study }) {
 }
 
 function CaseStudyCard({ study }) {
+  // A record with no story yet renders as a compact deployment entry rather than a
+  // full case study, so the layout never leaves an empty column or blank headings.
+  const hasStory = Boolean(study.headline || study.challenge || study.solution)
+  const hasVideo = Boolean(study.video?.youtubeId)
+
   return (
     <article className="card">
       <div className="flex flex-wrap items-start justify-between gap-4 border-b border-line p-6 md:p-8">
@@ -146,72 +155,112 @@ function CaseStudyCard({ study }) {
               {study.company}
             </h2>
             <p className="mt-1 text-sm">
-              {study.person}
-              {study.role ? ` · ${study.role}` : ''} · {study.location}
+              {[study.person, study.role, study.location].filter(Boolean).join(' · ')}
             </p>
+            {study.namePending && (
+              <p className="mt-1.5 text-xs italic text-ink-light">
+                Client name to be confirmed
+              </p>
+            )}
           </div>
         </div>
         <div className="flex flex-wrap gap-2">
           <span className="inline-block rounded bg-teal px-2.5 py-1 font-heading text-[11px] font-bold uppercase tracking-[0.09em] text-white">
             {study.industryLabel}
           </span>
-          <a
-            href={study.productHref}
+          <Link
+            to={launchPostHref(study.product) ?? '/blog'}
             className="inline-block rounded bg-accent px-2.5 py-1 font-heading text-[11px] font-bold uppercase tracking-[0.09em] text-primary transition hover:brightness-95"
           >
             {study.product}
-          </a>
+          </Link>
         </div>
       </div>
 
-      <div className="grid gap-8 p-6 md:p-8 lg:grid-cols-[minmax(0,1fr)_400px]">
+      {!hasStory ? (
+        <p className="px-6 py-5 text-sm leading-relaxed text-ink-light md:px-8">
+          {study.product} deployed in {study.location}. Full story being documented.
+        </p>
+      ) : (
+      <div
+        className={[
+          'grid gap-8 p-6 md:p-8',
+          hasVideo ? 'lg:grid-cols-[minmax(0,1fr)_400px]' : '',
+        ].join(' ')}
+      >
         <div>
-          <h3 className="font-heading text-lg font-bold leading-snug text-ink md:text-xl">
-            {study.headline}
-          </h3>
+          {study.headline && (
+            <h3 className="font-heading text-lg font-bold leading-snug text-ink md:text-xl">
+              {study.headline}
+            </h3>
+          )}
 
           <div className="mt-6 flex flex-col gap-5">
-            <div className="border-l-2 border-line pl-4">
-              <p className="eyebrow !text-ink-light">The challenge</p>
-              <p className="mt-2 text-sm leading-relaxed">{study.challenge}</p>
-            </div>
-            <div className="border-l-2 border-accent pl-4">
-              <p className="eyebrow">What they deployed</p>
-              <p className="mt-2 text-sm leading-relaxed">{study.solution}</p>
-            </div>
+            {study.challenge && (
+              <div className="border-l-2 border-line pl-4">
+                <p className="eyebrow !text-ink-light">The challenge</p>
+                <p className="mt-2 text-sm leading-relaxed">{study.challenge}</p>
+              </div>
+            )}
+            {study.solution && (
+              <div className="border-l-2 border-accent pl-4">
+                <p className="eyebrow">What they deployed</p>
+                <p className="mt-2 text-sm leading-relaxed">{study.solution}</p>
+              </div>
+            )}
           </div>
 
           {/* Stacks below sm: three columns clip word-values like "Repeatable" on a 320px screen. */}
-          <div className="mt-7 grid grid-cols-1 divide-y divide-line overflow-hidden rounded-card border border-line bg-surface sm:grid-cols-3 sm:divide-x sm:divide-y-0">
-            {study.metrics.map((m) => (
-              <div key={m.label} className="px-3 py-5 text-center">
-                <div className="break-words font-heading text-lg font-extrabold tabular-nums text-primary md:text-xl">
-                  {m.value}
+          {study.metrics?.length > 0 && (
+            <div className="mt-7 grid grid-cols-1 divide-y divide-line overflow-hidden rounded-card border border-line bg-surface sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+              {study.metrics.map((m) => (
+                <div key={m.label} className="px-3 py-5 text-center">
+                  <div className="break-words font-heading text-lg font-extrabold tabular-nums text-primary md:text-xl">
+                    <CountUp value={m.value} />
+                  </div>
+                  <div className="mt-1 text-[11px] uppercase tracking-wide text-ink-light">
+                    {m.label}
+                  </div>
                 </div>
-                <div className="mt-1 text-[11px] uppercase tracking-wide text-ink-light">
-                  {m.label}
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
 
           {/* Only render a blockquote when we hold the customer's actual words.
               Stories without one let the video speak for itself. */}
           {study.quote && (
-            <blockquote className="mt-7 rounded-card border border-line border-l-[4px] border-l-primary bg-surface px-6 py-5">
+            <blockquote
+              className={[
+                'mt-7 rounded-card border bg-surface px-6 py-5',
+                study.quotePending
+                  ? 'border-dashed border-accent border-l-[4px] border-l-accent'
+                  : 'border-line border-l-[4px] border-l-primary',
+              ].join(' ')}
+            >
+              {/* Draft wording written for the client to approve — never presented as
+                  a signed-off testimonial until it is one. */}
+              {study.quotePending && (
+                <p className="mb-2 font-heading text-[10px] font-bold uppercase tracking-[0.12em] text-accent">
+                  Draft — awaiting client approval
+                </p>
+              )}
               <p className="text-[15px] italic leading-relaxed text-ink">“{study.quote}”</p>
               <footer className="mt-3 text-xs font-semibold uppercase tracking-wide text-ink-light">
-                {study.quoteAttribution ?? `${study.person}, ${study.role} — ${study.company}`}
+                {study.quoteAttribution ??
+                  [study.person, study.role, study.company].filter(Boolean).join(', ')}
               </footer>
             </blockquote>
           )}
         </div>
 
-        <div className="lg:pt-1">
-          <p className="eyebrow mb-3">Hear it from them</p>
-          <StoryVideo study={study} />
-        </div>
+        {hasVideo && (
+          <div className="lg:pt-1">
+            <p className="eyebrow mb-3">Hear it from them</p>
+            <StoryVideo study={study} />
+          </div>
+        )}
       </div>
+      )}
     </article>
   )
 }
@@ -229,10 +278,11 @@ function LogoWall() {
 
         <Reveal delay={80}>
           <div className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-card border border-line bg-line sm:grid-cols-3 lg:grid-cols-6">
-            {clientLogos.map((c) => (
+            {clientLogos.map((c, i) => (
               <div
                 key={c.name}
-                className="group/logo flex aspect-[3/2] items-center justify-center bg-white p-4 transition duration-300 hover:bg-surface"
+                style={{ transitionDelay: `${(i % 6) * 60}ms` }}
+                className="group/logo flex aspect-[3/2] items-center justify-center bg-white p-4 transition duration-300 hover:bg-surface hover:scale-[1.04]"
                 title={c.name}
               >
                 <SafeImg
@@ -265,16 +315,16 @@ function LogoWall() {
 }
 
 export default function CaseStudiesPage() {
-  const [industry, setIndustry] = useState('all')
+  const [region, setRegion] = useState('all')
   const [line, setLine] = useState('all-products')
 
-  const visible = useMemo(
-    () =>
-      caseStudies
-        .filter((c) => (industry === 'all' ? true : c.industry === industry))
-        .filter((c) => (line === 'all-products' ? true : c.line === line)),
-    [industry, line],
-  )
+  const visible = useMemo(() => {
+    const matched = caseStudies
+      .filter((c) => (region === 'all' ? true : c.region === region))
+      .filter((c) => (line === 'all-products' ? true : c.line === line))
+    // Only the combined view interleaves; a region-specific tab keeps source order.
+    return region === 'all' ? interleaveByRegion(matched) : matched
+  }, [region, line])
 
   return (
     <>
@@ -289,10 +339,10 @@ export default function CaseStudiesPage() {
       <section className="container-page py-7 md:py-9">
         <div className="mb-8 flex flex-col gap-3">
           <ScrollTabs
-            options={industries}
-            active={industry}
-            onSelect={setIndustry}
-            label="Filter by client type"
+            options={regions}
+            active={region}
+            onSelect={setRegion}
+            label="Filter by client region"
           />
           <ScrollTabs
             options={productLines}
@@ -308,7 +358,11 @@ export default function CaseStudiesPage() {
         {visible.length > 0 ? (
           <div className="flex flex-col gap-8">
             {visible.map((study, i) => (
-              <Reveal key={study.slug} delay={Math.min(i, 2) * 90}>
+              <Reveal
+                key={study.slug}
+                variant={i % 2 === 0 ? 'left' : 'right'}
+                delay={60}
+              >
                 <CaseStudyCard study={study} />
               </Reveal>
             ))}

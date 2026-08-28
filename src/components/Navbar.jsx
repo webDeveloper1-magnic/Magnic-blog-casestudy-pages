@@ -5,6 +5,7 @@ import Logo from './Logo'
 const navItems = [
   { label: 'Blog', to: '/blog' },
   { label: 'Case Studies', to: '/case-studies' },
+  { label: 'Case Studies 2', to: '/case-studies-2' },
 ]
 
 function TopBar() {

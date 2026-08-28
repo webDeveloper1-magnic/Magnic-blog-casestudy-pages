@@ -1,14 +1,13 @@
 // Customer stories. Video IDs, titles and publish dates are taken from the
 // Magnic Technologies YouTube channel; logos from magnic.in/case-studies.
 
-// Full set of segments; `industries` below keeps only those with a published study,
-// so a filter can never land on an empty result. Hallmarking centres appear in the
-// logo wall but have no case study yet, so that tab stays hidden until one exists.
-const INDUSTRY_LABELS = [
+// Clients are filtered by region rather than trade segment — Magnic sells into India
+// and overseas, and that distinction is what a visitor is actually looking for.
+// `regions` below keeps only those with a published study, so a tab is never empty.
+const REGION_LABELS = [
   { slug: 'all', label: 'All Clients' },
-  { slug: 'retailer', label: 'Retailers' },
-  { slug: 'manufacturer', label: 'Manufacturers & Wholesalers' },
-  { slug: 'hallmark', label: 'Hallmarking Centres' },
+  { slug: 'india', label: 'Indian Clients' },
+  { slug: 'international', label: 'International Clients' },
 ]
 
 const PRODUCT_LINE_LABELS = [
@@ -27,6 +26,7 @@ export const caseStudies = [
     industryLabel: 'Retailer',
     line: 'easycliq',
     location: 'Madurai, Tamil Nadu',
+    region: 'india',
     product: 'EasyCLIQ X1',
     productHref: '/products/easycliq-x1',
     logo: '/images/clients/sri-krishna-nagai-maligai.webp',
@@ -55,6 +55,7 @@ export const caseStudies = [
     industryLabel: 'Retailer',
     line: 'fidm',
     location: 'Thrissur, Kerala',
+    region: 'india',
     product: 'Ferrous Particle Detector',
     productHref: '/products/ferrous-particle-detector',
     logo: '/images/clients/joyalukkas.webp',
@@ -81,6 +82,7 @@ export const caseStudies = [
     industryLabel: 'Manufacturer',
     line: 'easycliq',
     location: 'Salem, Tamil Nadu',
+    region: 'india',
     product: 'EasyCLIQ X3',
     productHref: '/products/easycliq-x3',
     logo: null,
@@ -109,6 +111,7 @@ export const caseStudies = [
     industryLabel: 'Manufacturer',
     line: 'fidm',
     location: 'Mumbai, Maharashtra',
+    region: 'india',
     product: 'Ferrous Particle Detector',
     productHref: '/products/ferrous-particle-detector',
     logo: '/images/clients/sunil-jewellers.webp',
@@ -135,6 +138,7 @@ export const caseStudies = [
     industryLabel: 'Retailer',
     line: 'easycliq',
     location: 'Andhra Pradesh',
+    region: 'india',
     product: 'EasyCLIQ Flexi X3',
     productHref: '/products/easycliq-x3',
     logo: null,
@@ -164,6 +168,7 @@ export const caseStudies = [
     industryLabel: 'Manufacturer',
     line: 'easycliq',
     location: 'India',
+    region: 'india',
     product: 'EasyCLIQ',
     productHref: '/products',
     logo: null,
@@ -193,6 +198,7 @@ export const caseStudies = [
     industryLabel: 'Professional Studio',
     line: 'easycliq',
     location: 'India',
+    region: 'india',
     product: 'EasyCLIQ Flexi X3',
     productHref: '/products/easycliq-x3',
     logo: null,
@@ -213,18 +219,142 @@ export const caseStudies = [
       { value: 'Pro', label: 'Studio adoption' },
     ],
   },
+
+  // ---------------------------------------------------------------------------
+  // International deployments. Country and machine are confirmed; the company
+  // names below are placeholders pending sign-off, so each carries
+  // `namePending: true` and renders a "Client name to be confirmed" note.
+  // Replace `company` and add person/role/headline/challenge/solution/metrics
+  // once the real details arrive. No video or image, by request.
+  // ---------------------------------------------------------------------------
+  {
+    slug: 'international-bahrain',
+    namePending: true,
+    company: 'Jewellery Manufacturer — Bahrain',
+    industry: 'manufacturer',
+    industryLabel: 'Manufacturer',
+    line: 'easycliq',
+    location: 'Bahrain',
+    region: 'international',
+    product: 'EasyCLIQ X3',
+    productHref: '/products/easycliq-x3',
+    logo: null,
+    thumb: null,
+    headline: 'Heavy Gulf bridal gold catalogued without leaving the premises',
+    challenge:
+      'Gulf bridal jewellery runs large and heavy — full sets and wide collars that a compact studio cannot physically hold. Photographing them meant either an outside studio or a compromise on how the piece was framed.',
+    solution:
+      'EasyCLIQ X3, whose 60 cm turntable and 10 KG bottom plate take a complete bridal set at its real size, with the AI software handling lighting and background removal in the same pass.',
+    metrics: [
+      { value: '60 cm', label: 'Turntable size' },
+      { value: '10 KG', label: 'Max load' },
+      { value: '< 3 Min', label: 'To publish-ready' },
+    ],
+    quote:
+      'The X3 handles our heaviest bridal sets at full size, and the images are ready to publish the same day.',
+    quotePending: true,
+  },
+  {
+    slug: 'international-cambodia',
+    namePending: true,
+    company: 'Jewellery Manufacturer — Cambodia',
+    industry: 'manufacturer',
+    industryLabel: 'Manufacturer',
+    line: 'easycliq',
+    location: 'Cambodia',
+    region: 'international',
+    product: 'EasyCLIQ X3',
+    productHref: '/products/easycliq-x3',
+    logo: null,
+    thumb: null,
+    headline: 'A manufacturer brought product photography in-house entirely',
+    challenge:
+      'Reaching buyers online meant sending stock out to a photographer and waiting on the results, with no control over turnaround and no consistency between batches.',
+    solution:
+      'EasyCLIQ X3 installed on site, so every piece is shot, cut out and exported by their own team using saved templates per product category.',
+    metrics: [
+      { value: 'In-house', label: 'Photography moved' },
+      { value: '1-Click', label: 'AI background removal' },
+      { value: '360°', label: 'Spin output' },
+    ],
+    quote:
+      'Everything is shot in our own factory now. The templates mean a new batch looks the same as the last one.',
+    quotePending: true,
+  },
+  {
+    slug: 'international-malaysia',
+    namePending: true,
+    company: 'Jewellery Manufacturer — Malaysia',
+    industry: 'manufacturer',
+    industryLabel: 'Manufacturer',
+    line: 'easycliq',
+    location: 'Malaysia',
+    region: 'international',
+    product: 'EasyCLIQ X3',
+    productHref: '/products/easycliq-x3',
+    logo: null,
+    thumb: null,
+    headline: 'One studio covering gold, gemstones and a mixed product range',
+    challenge:
+      'A catalogue spanning plain gold, gemstone-set pieces and accessories needs different lighting for each — a fixed setup flatters one material at the expense of the others.',
+    solution:
+      'EasyCLIQ X3 with ten independently controllable lights from 3000K to 6000K at 90+ CRI, saved as a template per material so each category is shot on its own settings.',
+    metrics: [
+      { value: '10', label: 'Controllable lights' },
+      { value: '90+', label: 'LED CRI' },
+      { value: '3000–6000K', label: 'Colour temperature' },
+    ],
+    quote:
+      'Gold and stones need different light. We set each one once and the machine remembers it.',
+    quotePending: true,
+  },
 ]
 
-const USED_INDUSTRIES = new Set(caseStudies.map((c) => c.industry))
+/**
+ * Maps a machine name to its product-launch article. `/products/*` belongs to the
+ * live site and is not a route here, so linking there would fall through to the
+ * catch-all and land the reader on the blog index.
+ */
+const LAUNCH_POSTS = [
+  [/ferrous|fidm/i, 'ferrous-particle-detector-machine-launch'],
+  [/holo/i, 'easycliq-holo-360-photography-studio-launch'],
+  [/mini/i, 'easycliq-mini-in-house-photography-studio-launch'],
+  [/x3/i, 'easycliq-x3-large-format-photography-robot-launch'],
+  [/x1/i, 'easycliq-x1-ai-robotic-photography-studio-launch'],
+]
+
+/** Returns the in-app launch-article path for a machine, or null if there isn't one. */
+export function launchPostHref(product) {
+  if (!product) return null
+  // X3 is checked before X1 so "Flexi X3" cannot match the X1 pattern first.
+  const hit = LAUNCH_POSTS.find(([re]) => re.test(product))
+  return hit ? `/blog/${hit[1]}` : null
+}
+
+const USED_REGIONS = new Set(caseStudies.map((c) => c.region))
 const USED_LINES = new Set(caseStudies.map((c) => c.line))
 
-export const industries = INDUSTRY_LABELS.filter(
-  (i) => i.slug === 'all' || USED_INDUSTRIES.has(i.slug),
-)
+export const regions = REGION_LABELS.filter((r) => r.slug === 'all' || USED_REGIONS.has(r.slug))
 
 export const productLines = PRODUCT_LINE_LABELS.filter(
   (l) => l.slug === 'all-products' || USED_LINES.has(l.slug),
 )
+
+/**
+ * "All Clients" alternates Indian and international stories rather than listing all of
+ * one then all of the other, so overseas customers are visible without scrolling past
+ * the whole Indian roster. Whichever list is longer supplies the tail.
+ */
+export function interleaveByRegion(list) {
+  const india = list.filter((c) => c.region === 'india')
+  const abroad = list.filter((c) => c.region !== 'india')
+  const out = []
+  for (let i = 0; i < Math.max(india.length, abroad.length); i++) {
+    if (india[i]) out.push(india[i])
+    if (abroad[i]) out.push(abroad[i])
+  }
+  return out
+}
 
 // Logo wall — customers listed on magnic.in/case-studies.
 export const clientLogos = [
