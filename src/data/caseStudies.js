@@ -5,15 +5,15 @@
 // and overseas, and that distinction is what a visitor is actually looking for.
 // `regions` below keeps only those with a published study, so a tab is never empty.
 const REGION_LABELS = [
-  { slug: 'all', label: 'All Clients' },
-  { slug: 'india', label: 'Indian Clients' },
-  { slug: 'international', label: 'International Clients' },
+  { slug: 'all', label: 'All Clients', short: 'All Clients' },
+  { slug: 'india', label: 'Indian Clients', short: 'India' },
+  { slug: 'international', label: 'International Clients', short: 'International' },
 ]
 
 const PRODUCT_LINE_LABELS = [
-  { slug: 'all-products', label: 'All Machines' },
-  { slug: 'easycliq', label: 'EasyCLIQ Photography' },
-  { slug: 'fidm', label: 'Ferrous Particle Detector' },
+  { slug: 'all-products', label: 'All Machines', short: 'All Machines' },
+  { slug: 'easycliq', label: 'EasyCLIQ Photography', short: 'EasyCLIQ' },
+  { slug: 'fidm', label: 'Ferrous Particle Detector', short: 'FIDM' },
 ]
 
 export const caseStudies = [
@@ -255,6 +255,33 @@ export const caseStudies = [
     quotePending: true,
   },
   {
+    slug: 'international-saudi-arabia',
+    namePending: true,
+    company: 'Jewellery Manufacturer — Saudi Arabia',
+    industry: 'manufacturer',
+    industryLabel: 'Manufacturer',
+    line: 'easycliq',
+    location: 'Saudi Arabia',
+    region: 'international',
+    product: 'EasyCLIQ X1',
+    productHref: '/products/easycliq-x1',
+    logo: null,
+    thumb: null,
+    headline: 'Every angle of every piece, shot to one repeatable standard',
+    challenge:
+      'A large gold catalogue photographed by hand drifts — the same ring framed slightly differently from one session to the next, so a collection never looks like a matched set online.',
+    solution:
+      'EasyCLIQ X1, whose YZ-axis robotic slider returns to the same coordinates every time, with a top turntable that suspends necklaces for natural wear-ready shots.',
+    metrics: [
+      { value: '40 cm', label: 'Turntable size' },
+      { value: '5 KG', label: 'Max bottom load' },
+      { value: '< 3 Min', label: 'To publish-ready' },
+    ],
+    quote:
+      'Every piece is framed the same way now. The catalogue finally looks like one collection instead of many shoots.',
+    quotePending: true,
+  },
+  {
     slug: 'international-cambodia',
     namePending: true,
     company: 'Jewellery Manufacturer — Cambodia',
@@ -279,6 +306,33 @@ export const caseStudies = [
     ],
     quote:
       'Everything is shot in our own factory now. The templates mean a new batch looks the same as the last one.',
+    quotePending: true,
+  },
+  {
+    slug: 'international-sri-lanka',
+    namePending: true,
+    company: 'Jewellery Manufacturer — Sri Lanka',
+    industry: 'manufacturer',
+    industryLabel: 'Manufacturer',
+    line: 'easycliq',
+    location: 'Sri Lanka',
+    region: 'international',
+    product: 'EasyCLIQ X1',
+    productHref: '/products/easycliq-x1',
+    logo: null,
+    thumb: null,
+    headline: 'Coloured stones photographed in their true colour',
+    challenge:
+      'Sri Lankan sapphires and coloured gemstones shift hue under the wrong light, so images either misrepresent the stone or need correcting by hand afterwards.',
+    solution:
+      'EasyCLIQ X1 with ten independently controllable 90+ CRI lights, tuned per stone type and saved as a template so the colour is right at capture.',
+    metrics: [
+      { value: '90+', label: 'LED CRI' },
+      { value: '10', label: 'Controllable lights' },
+      { value: '360°', label: 'Top & bottom spin' },
+    ],
+    quote:
+      'The stones look on screen the way they look in the hand. That was never true of our old photographs.',
     quotePending: true,
   },
   {

@@ -4,12 +4,12 @@
 // Every tab that can appear, in display order. `categories` below is filtered down
 // to those a post actually uses, so a tab can never render an empty result set.
 const CATEGORY_LABELS = [
-  { slug: 'all', label: 'All Articles' },
-  { slug: 'news', label: 'Latest News' },
-  { slug: 'product-launches', label: 'Product Launches' },
-  { slug: 'guides', label: 'Guides & Comparisons' },
-  { slug: 'exhibitions', label: 'Exhibitions & Events' },
-  { slug: 'awards', label: 'Awards & Achievements' },
+  { slug: 'all', label: 'All Articles', short: 'All' },
+  { slug: 'news', label: 'Latest News', short: 'News' },
+  { slug: 'product-launches', label: 'Product Launches', short: 'Launches' },
+  { slug: 'guides', label: 'Guides & Comparisons', short: 'Guides' },
+  { slug: 'exhibitions', label: 'Exhibitions & Events', short: 'Events' },
+  { slug: 'awards', label: 'Awards & Achievements', short: 'Awards' },
 ]
 
 export const posts = [
@@ -1389,6 +1389,7 @@ export const posts = [
     pillar: true,
     image: '/images/articles/price-hero.jpg',
     imageAlt: 'Jewellery photographed in an EasyCLIQ studio',
+    imageFit: 'cover',
     // Content and imagery taken from magnic.in/blog/jewellery-photography-machine-price-guide-2026
     body: [
       'Automated jewellery photography machines typically range from around USD 2,000 for a compact studio to USD 12,000+ for large-format robotic systems. The EasyCLIQ MINI starts near USD 2,100, the HOLO near USD 4,750, the X1 near USD 9,400 and the X3 near USD 11,500 — with software included and most jewellers recovering the cost by cutting outsourced photography and editing.',
@@ -1476,6 +1477,7 @@ export const posts = [
     featured: false,
     image: '/images/articles/cmp-hero.jpg',
     imageAlt: 'Jewellery photographed automatically inside an EasyCLIQ studio',
+    imageFit: 'cover',
     // Content and imagery taken from magnic.in/blog/easycliq-vs-gemlightbox-vs-orbitvu
     body: [
       'EasyCLIQ is a fully automated jewellery photography studio that captures true-colour 360° photos and spin videos in under three minutes. Compared with compact lightboxes like GemLightbox and Orbitvu Micro, it photographs much larger jewellery, uses your own Canon DSLR for higher image quality, includes built-in AI background removal and robotic 360° video, and is made in India with on-site service.',
@@ -1580,6 +1582,7 @@ export const posts = [
     featured: false,
     image: '/images/articles/bridal-hero.jpg',
     imageAlt: 'A large Indian bridal necklace photographed in true colour',
+    imageFit: 'cover',
     // Content and imagery taken from
     // magnic.in/blog/how-to-photograph-large-indian-bridal-haaram-jewellery
     body: [

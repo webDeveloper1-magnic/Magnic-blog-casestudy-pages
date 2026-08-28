@@ -139,6 +139,32 @@ function StoryVideo({ study }) {
   )
 }
 
+/**
+ * Placeholder for a client with no video or image yet. Keeps the two-column layout
+ * intact so the row does not read as half-built while media is still being gathered.
+ */
+function ClientPanel({ study }) {
+  const initials = study.company
+    .replace(/[^A-Za-z ]/g, '')
+    .split(' ')
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join('')
+
+  return (
+    <div className="flex aspect-video w-full flex-col items-center justify-center rounded-card border border-line bg-gradient-to-br from-primary to-primary-2 p-8 text-center shadow-card">
+      <span className="flex h-16 w-16 items-center justify-center rounded-full bg-white/15 font-heading text-xl font-bold text-white">
+        {initials}
+      </span>
+      <p className="mt-4 font-heading text-sm font-semibold text-white/90">{study.location}</p>
+      <p className="mt-1 font-heading text-[11px] uppercase tracking-[0.14em] text-accent">
+        {study.product}
+      </p>
+    </div>
+  )
+}
+
 function CaseStudyCard({ study }) {
   // A record with no story yet renders as a compact deployment entry rather than a
   // full case study, so the layout never leaves an empty column or blank headings.
@@ -168,11 +194,19 @@ function CaseStudyCard({ study }) {
           <span className="inline-block rounded bg-teal px-2.5 py-1 font-heading text-[11px] font-bold uppercase tracking-[0.09em] text-white">
             {study.industryLabel}
           </span>
+          {/* A real button rather than a flat chip — it navigates, so it should look
+              like the site's other buttons and signal that with an arrow. */}
           <Link
             to={launchPostHref(study.product) ?? '/blog'}
-            className="inline-block rounded bg-accent px-2.5 py-1 font-heading text-[11px] font-bold uppercase tracking-[0.09em] text-primary transition hover:brightness-95"
+            className="group/prod inline-flex items-center gap-2 rounded bg-accent px-4 py-2 font-heading text-[12px] font-bold uppercase tracking-[0.08em] text-primary shadow-card transition duration-300 hover:-translate-y-0.5 hover:shadow-card-hover hover:brightness-[0.97]"
           >
             {study.product}
+            <span
+              className="transition-transform duration-300 group-hover/prod:translate-x-1"
+              aria-hidden="true"
+            >
+              →
+            </span>
           </Link>
         </div>
       </div>
@@ -182,12 +216,9 @@ function CaseStudyCard({ study }) {
           {study.product} deployed in {study.location}. Full story being documented.
         </p>
       ) : (
-      <div
-        className={[
-          'grid gap-8 p-6 md:p-8',
-          hasVideo ? 'lg:grid-cols-[minmax(0,1fr)_400px]' : '',
-        ].join(' ')}
-      >
+        // Always two columns once there is a story: a video where one exists, a
+        // branded placeholder otherwise, so every card keeps the same shape.
+        <div className="grid gap-8 p-6 md:p-8 lg:grid-cols-[minmax(0,1fr)_400px]">
         <div>
           {study.headline && (
             <h3 className="font-heading text-lg font-bold leading-snug text-ink md:text-xl">
@@ -253,12 +284,13 @@ function CaseStudyCard({ study }) {
           )}
         </div>
 
-        {hasVideo && (
-          <div className="lg:pt-1">
-            <p className="eyebrow mb-3">Hear it from them</p>
-            <StoryVideo study={study} />
-          </div>
-        )}
+        <div className="lg:pt-1">
+          <p className="eyebrow mb-3">{hasVideo ? 'Hear it from them' : 'Deployment'}</p>
+          {hasVideo ? <StoryVideo study={study} /> : <ClientPanel study={study} />}
+          {!hasVideo && (
+            <p className="mt-2.5 text-xs italic text-ink-light">Photo or video to follow</p>
+          )}
+        </div>
       </div>
       )}
     </article>
@@ -337,20 +369,33 @@ export default function CaseStudiesPage() {
 
       {/* Matches the Blog page's rhythm exactly so both headers read identically. */}
       <section className="container-page py-7 md:py-9">
+        <Reveal className="mb-7 text-center sm:text-left">
+          <p className="eyebrow">Customer Stories</p>
+          <h2 className="mt-2 max-w-2xl font-heading text-xl font-bold leading-snug text-primary md:text-[26px]">
+            Deployments you can check for yourself
+          </h2>
+          <p className="mt-2.5 max-w-xl text-sm leading-relaxed">
+            Named businesses, the machine each one runs, and the result it produced —
+            filter by region or by machine to find one like yours.
+          </p>
+        </Reveal>
+
         <div className="mb-8 flex flex-col gap-3">
           <ScrollTabs
             options={regions}
             active={region}
             onSelect={setRegion}
             label="Filter by client region"
+            align="center"
           />
           <ScrollTabs
             options={productLines}
             active={line}
             onSelect={setLine}
             label="Filter by machine"
+            align="center"
           />
-          <p className="text-xs text-ink-light">
+          <p className="text-center text-xs text-ink-light sm:text-left">
             Showing {visible.length} of {caseStudies.length} customer stories
           </p>
         </div>

@@ -43,16 +43,28 @@ function PostMeta({ post }) {
 function CardThumb({ post }) {
   const [failed, setFailed] = useState(false)
   if (!post.image || failed) return null
+
+  // Two kinds of image need opposite treatment: a photograph should fill the tile
+  // edge to edge, while a transparent product cutout must be contained on a light
+  // ground — cover would slice the edges off the machine.
+  const isPhoto = post.imageFit === 'cover' || post.heroStyle === 'cover'
+
   return (
-    // Product shots are transparent cutouts, so the tile needs a white ground and
-    // object-contain — object-cover would slice the edges off the machine.
-    <div className="relative flex aspect-[16/10] items-center justify-center overflow-hidden border-b border-line bg-gradient-to-b from-white to-surface p-4">
+    <div
+      className={[
+        'relative flex aspect-[16/10] items-center justify-center overflow-hidden border-b border-line',
+        isPhoto ? 'bg-surface' : 'bg-gradient-to-b from-white to-surface p-4',
+      ].join(' ')}
+    >
       <img
         src={post.image}
         alt={post.imageAlt || ''}
         loading="lazy"
         onError={() => setFailed(true)}
-        className="max-h-full max-w-full object-contain transition-transform duration-500 ease-reveal group-hover:scale-[1.06]"
+        className={[
+          'transition-transform duration-500 ease-reveal group-hover:scale-[1.06]',
+          isPhoto ? 'h-full w-full object-cover' : 'max-h-full max-w-full object-contain',
+        ].join(' ')}
       />
     </div>
   )

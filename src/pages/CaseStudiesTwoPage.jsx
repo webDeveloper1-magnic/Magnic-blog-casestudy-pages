@@ -274,14 +274,26 @@ export default function CaseStudiesTwoPage() {
       />
 
       <section className="container-page py-7 md:py-9">
+        <Reveal className="mb-7 text-center sm:text-left">
+          <p className="eyebrow">Client Reviews</p>
+          <h2 className="mt-2 max-w-2xl font-heading text-xl font-bold leading-snug text-primary md:text-[26px]">
+            Hear it from the jewellers running our machines
+          </h2>
+          <p className="mt-2.5 max-w-xl text-sm leading-relaxed">
+            Every review below comes from a business using a Magnic machine day to day —
+            filter by region, then open any story for the full detail.
+          </p>
+        </Reveal>
+
         <div className="mb-8">
           <ScrollTabs
             options={regions}
             active={region}
             onSelect={setRegion}
             label="Filter reviews by client region"
+            align="center"
           />
-          <p className="mt-3 text-xs text-ink-light">
+          <p className="mt-3 text-center text-xs text-ink-light sm:text-left">
             Showing {visible.length} of {caseStudies.length} customer stories
           </p>
         </div>
