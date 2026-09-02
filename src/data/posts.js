@@ -1646,6 +1646,165 @@ export const posts = [
     ],
     tags: ['Bridal', 'Lighting', 'Technique'],
   },
+  {
+    slug: 'easycliq-jewellery-content-for-social-media-marketing',
+    title: 'How to Turn Jewellery Photography into Social Media Marketing Content',
+    excerpt:
+      'Create professional jewellery photos, 360° spins and videos in-house, then turn them into consistent marketing content for Instagram, Facebook, YouTube, WhatsApp and your online store.',
+    category: 'how-to',
+    categoryLabel: 'Marketing Guide',
+    also: ['guides', 'news'],
+    date: '2026-09-02',
+    dateLabel: '2 Sep 2026',
+    readingTime: 7,
+    author: 'Magnic Technologies',
+    featured: false,
+    image: '/images/articles/cmp-360.jpg',
+    imageAlt: 'Jewellery imagery prepared for digital and social-media marketing',
+    imageFit: 'cover',
+    videoHeading: 'Customer review and EasyCLIQ content',
+    videos: [
+      {
+        src: '/images/sakthijewellersvideos/sakthi_jewellery_review.mp4',
+        type: 'video/mp4',
+        poster: '/images/articles/cmp-360.jpg',
+        title: 'Sakthi Jewellers on using EasyCLIQ content for jewellery marketing',
+      },
+      {
+        youtubeId: '7pZ0rP5Ufw8',
+        title: 'Jewellery photography and video content created with EasyCLIQ',
+      },
+      {
+        youtubeId: 'EtMLEn6InZg',
+        title: 'EasyCLIQ jewellery visuals for social-media marketing',
+      },
+      {
+        youtubeId: 'rMhmtFU3Oyc',
+        title: 'Professional jewellery product video for digital promotion',
+      },
+      {
+        youtubeId: 'sZ8ueaLj8rY',
+        title: 'EasyCLIQ product content for online jewellery campaigns',
+      },
+    ],
+    body: [
+      'Jewellery photographs are no longer used only in printed catalogues. A well-prepared set of product images can become Instagram posts, Facebook creatives, YouTube videos, WhatsApp promotions, ecommerce listings and digital advertisements.',
+      'The process begins with accurate, high-quality jewellery visuals. Those master images and videos are then cleaned, resized, branded and adapted to suit the format and audience of each social-media platform.',
+    ],
+    sections: [
+      {
+        type: 'steps',
+        heading: 'How to Turn Jewellery Photos into Social Media Posts and Blogs',
+        intro:
+          'Use these three stages to move from a physical jewellery piece to polished visual content that is ready for social media, blog articles and digital campaigns.',
+        groups: [
+          {
+            heading: 'Step-by-Step Preparation',
+            image: '/images/articles/social-guide-preparation.jpg',
+            imageAlt: 'A gold necklace being cleaned and prepared for professional photography',
+            items: [
+              {
+                title: 'Clean the piece',
+                text: 'Polish the jewellery and remove fingerprints, dust and smudges before photography so macro images show only the intended finish and fine details.',
+              },
+              {
+                title: 'Plan the content',
+                text: 'Decide whether the jewellery will be used for a product launch, festive campaign, styling guide, customer enquiry or ecommerce listing. This determines the angles and formats to capture.',
+              },
+              {
+                title: 'Create the master visuals',
+                text: 'Capture a sharp hero photograph, close-up details, additional angles and a short spin or movement video while preserving the true colour of the metal and gemstones.',
+              },
+            ],
+          },
+          {
+            heading: 'AI Generation & Lifestyle Transformation',
+            image: '/images/articles/social-guide-ai-lifestyle.jpg',
+            imageAlt: 'A jewellery photograph transformed from product presentation to an AI-assisted model visual',
+            items: [
+              {
+                title: 'Remove the background',
+                text: 'Isolate the jewellery on a transparent or clean solid background so one master image can be reused in multiple designs.',
+              },
+              {
+                title: 'Create model shots',
+                text: 'Place the clean jewellery cutout on a suitable model to create lifestyle and virtual try-on visuals without organising a separate photoshoot for every product.',
+              },
+              {
+                title: 'Change the setting',
+                text: 'Place the product in luxury, seasonal, bridal or festive environments while keeping the jewellery itself clear, accurate and visually dominant.',
+              },
+            ],
+          },
+          {
+            heading: 'Social Media & Blog Layout',
+            image: '/images/articles/social-guide-publishing.jpg',
+            imageAlt: 'Jewellery marketing visuals adapted for a blog, tablet and mobile video format',
+            items: [
+              {
+                title: 'Design reusable templates',
+                text: 'Build a consistent layout for new arrivals, festive collections, product features and blog banners using the same brand colours, typography and logo placement.',
+              },
+              {
+                title: 'Format for each channel',
+                text: 'Prepare square and portrait posts for Instagram and Facebook, vertical videos for Reels and YouTube Shorts, lightweight files for WhatsApp, and wide images for blog and website banners.',
+              },
+              {
+                title: 'Write short, useful copy',
+                text: 'Lead with the design value, material, occasion or styling benefit. Finish with a clear action such as sending an enquiry, visiting the showroom or exploring the collection.',
+              },
+              {
+                title: 'Publish and reuse',
+                text: 'Schedule the content and reuse the strongest visuals across Stories, catalogues, advertisements, blog articles and customer follow-up messages.',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        type: 'text',
+        heading: 'From Jewellery Images to Social Media Content',
+        image: '/images/articles/cmp-bg-removal.webp',
+        imageAlt: 'A clean jewellery photograph prepared for social-media content',
+        body: [
+          'Start with a clean master photograph that represents the jewellery accurately—its colour, finish, stones and fine details. Additional angles, close-up images and short videos give the marketing team enough material to tell a complete product story.',
+          'The master visual can then be placed on a branded background, combined with a product name or campaign message, and resized for each channel. A single photograph may become a square Instagram post, a portrait Story, a Facebook advertisement, a WhatsApp catalogue image and an ecommerce listing.',
+          'Movement adds another layer of communication. A 360° spin or short product video can become an Instagram Reel, Facebook video, YouTube Short or product demonstration, helping customers inspect the jewellery before visiting the showroom.',
+        ],
+      },
+      {
+        type: 'text',
+        heading: 'Where EasyCLIQ Fits Into This',
+        image: '/images/articles/price-inhouse.jpg',
+        imageAlt: 'Jewellery product photography being produced through an in-house workflow',
+        imageSize: 'compact',
+        bodyStyle: 'bullets',
+        body: [
+          'Place the jewellery and let the X1 automate lighting and camera positioning, producing studio-quality master images without requiring photography experience.',
+          'Use the robotic camera controls and top-and-bottom turntables to capture detailed angles, 360° spins and smooth product videos in the same workflow.',
+          'Apply one-click AI-powered background removal and the built-in editing tools to create clean PNG, JPEG and animated GIF assets with less post-production.',
+          'Use the software’s resizing, compression and publishing tools to prepare consistent files for social media, blogs, ecommerce pages and digital campaigns.',
+        ],
+      },
+      {
+        type: 'text',
+        heading: 'The Sakthi Jewellers experience',
+        body: [
+          'In the accompanying customer review, Sakthi Jewellers explains how imagery and video produced with the photography machine support their marketing activity. Their experience shows the practical value of bringing content creation closer to the showroom team: products can be photographed, prepared and used in promotions without depending on a new external production cycle each time.',
+          'This is where EasyCLIQ becomes more than studio equipment. It gives the jewellery business a repeatable content engine—one that connects product photography directly with day-to-day digital marketing.',
+        ],
+      },
+      {
+        type: 'text',
+        heading: 'From faster content to a stronger brand',
+        body: [
+          'The strongest advantage is consistency. When every product is photographed with the same lighting, framing and colour accuracy, the brand looks more professional across every customer touchpoint.',
+          'Faster in-house production also lets the marketing team respond to new arrivals, festivals, price-led campaigns and customer enquiries while the opportunity is still relevant. Instead of waiting for content, the business can build its marketing calendar around products that are ready to publish.',
+        ],
+      },
+    ],
+    tags: ['EasyCLIQ', 'Social Media Marketing', 'Jewellery Photography', 'Customer Story'],
+  },
 ]
 
 export const featuredPost = posts.find((p) => p.featured) ?? posts[0]
@@ -1680,6 +1839,10 @@ function buildSearchText(post) {
     parts.push(...(s.body ?? []))
     for (const item of s.items ?? []) {
       parts.push(item.title, item.text, item.problem, item.solution, item.value, item.label)
+    }
+    for (const group of s.groups ?? []) {
+      parts.push(group.heading, group.imageAlt)
+      for (const item of group.items ?? []) parts.push(item.title, item.text)
     }
     for (const pair of s.pairs ?? []) parts.push(pair.before, pair.after)
     for (const img of s.images ?? []) parts.push(img.alt)

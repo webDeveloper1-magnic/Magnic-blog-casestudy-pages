@@ -8,17 +8,32 @@ import CountUp from '../components/CountUp'
 import { posts } from '../data/posts'
 
 function VideoFrame({ video }) {
+  const isLocalVideo = Boolean(video.src)
+
   return (
     <div>
       <div className="relative w-full overflow-hidden rounded-card border border-line bg-black pt-[56.25%] shadow-card">
-        <iframe
-          className="absolute inset-0 h-full w-full"
-          src={`https://www.youtube-nocookie.com/embed/${video.youtubeId}`}
-          title={video.title}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          loading="lazy"
-        />
+        {isLocalVideo ? (
+          <video
+            className="absolute inset-0 h-full w-full object-contain"
+            controls
+            preload="metadata"
+            poster={video.poster}
+            aria-label={video.title}
+          >
+            <source src={video.src} type={video.type || 'video/mp4'} />
+            Your browser does not support embedded video.
+          </video>
+        ) : (
+          <iframe
+            className="absolute inset-0 h-full w-full"
+            src={`https://www.youtube-nocookie.com/embed/${video.youtubeId}`}
+            title={video.title}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            loading="lazy"
+          />
+        )}
       </div>
       {video.title && (
         <p className="mt-2.5 font-heading text-sm font-semibold leading-snug text-ink">
@@ -39,7 +54,7 @@ function VideoRail({ videos, heading = 'Watch it in action' }) {
       </h2>
       <div className="flex flex-col gap-6">
         {videos.map((v) => (
-          <VideoFrame key={v.youtubeId} video={v} />
+          <VideoFrame key={v.youtubeId || v.src} video={v} />
         ))}
       </div>
     </aside>
@@ -71,15 +86,34 @@ function TextSection({ section }) {
       <SafeImg
         src={section.image}
         alt={section.imageAlt}
-        className="mb-5 w-full rounded-card border border-line bg-white object-contain shadow-card"
+        className={[
+          'mb-5 rounded-card border border-line bg-white shadow-card',
+          section.imageSize === 'compact'
+            ? 'mx-auto aspect-[16/10] w-full max-w-xl object-cover'
+            : 'w-full object-contain',
+        ].join(' ')}
       />
-      <div className="flex flex-col gap-4">
-        {section.body.map((p, i) => (
-          <p key={i} className="text-[15px] leading-relaxed md:text-base">
-            {p}
-          </p>
-        ))}
-      </div>
+      {section.bodyStyle === 'bullets' ? (
+        <ul className="flex flex-col gap-3">
+          {section.body.map((point, i) => (
+            <li key={i} className="flex gap-3 text-[15px] leading-relaxed md:text-base">
+              <span
+                className="mt-[0.62em] h-2 w-2 shrink-0 rounded-full bg-accent"
+                aria-hidden="true"
+              />
+              <span>{point}</span>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <div className="flex flex-col gap-4">
+          {section.body.map((p, i) => (
+            <p key={i} className="text-[15px] leading-relaxed md:text-base">
+              {p}
+            </p>
+          ))}
+        </div>
+      )}
     </section>
   )
 }
@@ -154,6 +188,58 @@ function UseCasesSection({ section }) {
             <h3 className="font-heading text-sm font-bold text-primary">{u.title}</h3>
             <p className="mt-2 text-[13px] leading-relaxed">{u.text}</p>
           </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+function StepsSection({ section }) {
+  return (
+    <section>
+      <SectionHeading>{section.heading}</SectionHeading>
+      {section.intro && (
+        <p className="mb-7 text-[15px] leading-relaxed md:text-base">{section.intro}</p>
+      )}
+      <div className="border-y border-line">
+        {section.groups.map((group, index) => (
+          <section
+            key={group.heading}
+            className="grid gap-4 border-b border-line py-7 last:border-b-0 md:grid-cols-[88px_minmax(0,1fr)] md:gap-6"
+          >
+            <div>
+              <span className="font-heading text-[10px] font-bold uppercase tracking-[0.16em] text-ink-light">
+                Step
+              </span>
+              <p className="mt-1 font-heading text-3xl font-extrabold leading-none text-accent">
+                {String(index + 1).padStart(2, '0')}
+              </p>
+            </div>
+            <div>
+              <h3 className="font-heading text-lg font-bold text-primary md:text-xl">
+                {group.heading}
+              </h3>
+              <SafeImg
+                src={group.image}
+                alt={group.imageAlt}
+                className="mt-5 aspect-[16/10] w-full rounded-card border border-line bg-surface object-cover shadow-card"
+              />
+              <ul className="mt-4 flex flex-col gap-3">
+                {group.items.map((item) => (
+                  <li key={item.title} className="flex gap-3 text-[15px] leading-relaxed md:text-base">
+                    <span
+                      className="mt-[0.62em] h-2 w-2 shrink-0 rounded-full bg-accent"
+                      aria-hidden="true"
+                    />
+                    <span>
+                      <strong className="font-semibold text-ink">{item.title}:</strong>{' '}
+                      {item.text}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
         ))}
       </div>
     </section>
@@ -302,6 +388,7 @@ const SECTION_RENDERERS = {
   comparison: ComparisonSection,
   gallery: GallerySection,
   usecases: UseCasesSection,
+  steps: StepsSection,
   problemsolutions: ProblemSolutionsSection,
   stats: StatsSection,
   specs: SpecsSection,
