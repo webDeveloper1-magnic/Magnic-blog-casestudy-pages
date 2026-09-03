@@ -90,6 +90,11 @@ function TextSection({ section }) {
           'mb-5 rounded-card border border-line bg-white shadow-card',
           section.imageSize === 'compact'
             ? 'mx-auto aspect-[16/10] w-full max-w-xl object-cover'
+            : section.imageSize === 'wide-short'
+              ? [
+                  'mx-auto aspect-[2/3] w-[82%] max-w-xl object-contain',
+                  section.imagePosition === 'bottom' ? 'object-bottom' : 'object-center',
+                ].join(' ')
             : 'w-full object-contain',
         ].join(' ')}
       />

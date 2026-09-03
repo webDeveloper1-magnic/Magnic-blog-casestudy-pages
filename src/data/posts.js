@@ -1659,8 +1659,8 @@ export const posts = [
     readingTime: 7,
     author: 'Magnic Technologies',
     featured: false,
-    image: '/images/articles/cmp-360.jpg',
-    imageAlt: 'Jewellery imagery prepared for digital and social-media marketing',
+    image: '/images/articles/social-guide-hero.jpg',
+    imageAlt: 'Professional jewellery photography prepared for social-media and digital marketing',
     imageFit: 'cover',
     videoHeading: 'Customer review and EasyCLIQ content',
     videos: [
@@ -1673,18 +1673,6 @@ export const posts = [
       {
         youtubeId: '7pZ0rP5Ufw8',
         title: 'Jewellery photography and video content created with EasyCLIQ',
-      },
-      {
-        youtubeId: 'EtMLEn6InZg',
-        title: 'EasyCLIQ jewellery visuals for social-media marketing',
-      },
-      {
-        youtubeId: 'rMhmtFU3Oyc',
-        title: 'Professional jewellery product video for digital promotion',
-      },
-      {
-        youtubeId: 'sZ8ueaLj8rY',
-        title: 'EasyCLIQ product content for online jewellery campaigns',
       },
     ],
     body: [
@@ -1804,6 +1792,493 @@ export const posts = [
       },
     ],
     tags: ['EasyCLIQ', 'Social Media Marketing', 'Jewellery Photography', 'Customer Story'],
+  },
+  {
+    slug: 'easycliq-x3-multicategory-social-media-content',
+    title: 'How to Turn Product Photography into Social Media Marketing Content',
+    excerpt:
+      'Turn footwear, handbags, electronics, fashion products, accessories and cosmetics into professional social-media images and videos with a repeatable EasyCLIQ X3 workflow.',
+    category: 'how-to',
+    categoryLabel: 'Marketing Guide',
+    also: ['guides', 'news'],
+    date: '2026-09-03',
+    dateLabel: '3 Sep 2026',
+    readingTime: 8,
+    author: 'Magnic Technologies',
+    featured: false,
+    image: '/images/articles/x3-multicategory-social-hero.jpg',
+    imageAlt:
+      'EasyCLIQ X3 photography studio producing social-media-ready images for footwear, handbags, cosmetics and electronics',
+    imageFit: 'cover',
+    body: [
+      'Social-media marketing depends on a steady supply of clear product photographs, lifestyle visuals and short videos. The process applies to products of many sizes—from cosmetics and accessories to shoes, handbags, electronics and larger fashion items.',
+      'A useful workflow should first create accurate master visuals, then transform and format them for each digital channel. Once that process is clear, a large-format automated studio such as EasyCLIQ X3 can make the production stage faster and more repeatable.',
+    ],
+    sections: [
+      {
+        type: 'steps',
+        heading: 'How to Turn Product Images into Social Media Marketing Content',
+        intro:
+          'Begin with the product and marketing goal. These three stages apply to footwear, handbags, electronics, fashion items, accessories, cosmetics and other ecommerce products.',
+        groups: [
+          {
+            heading: 'Product Preparation & Shot Planning',
+            image: '/images/articles/x3-multicategory-step-preparation.jpg',
+            imageAlt: 'Footwear, a handbag, cosmetics and electronics being prepared for product photography',
+            items: [
+              {
+                title: 'Clean and inspect each product',
+                text: 'Remove dust, fingerprints, loose threads and packaging marks so close-up images show a finished, sale-ready product.',
+              },
+              {
+                title: 'Plan around product size',
+                text: 'Measure the product and choose the right framing for small cosmetics, medium accessories, shoes, handbags or larger fashion products.',
+              },
+              {
+                title: 'Define the campaign goal',
+                text: 'Decide whether the content is for a launch, product demonstration, seasonal campaign, ecommerce listing or customer enquiry.',
+              },
+              {
+                title: 'Create a shot list',
+                text: 'Plan the hero view, side and detail angles, 360° spin and short movement video needed for the selected channels.',
+              },
+            ],
+          },
+          {
+            heading: 'Image Creation & Lifestyle Transformation',
+            image: '/images/articles/x3-multicategory-step-transformation.jpg',
+            imageAlt: 'Shoe and handbag photographs transformed into clean cutouts and lifestyle marketing visuals',
+            items: [
+              {
+                title: 'Capture accurate master visuals',
+                text: 'Create clear photographs, detail views and product videos that preserve the real colour, shape, texture and material.',
+              },
+              {
+                title: 'Remove the background',
+                text: 'Prepare a clean cutout that can be reused on white, transparent, branded or campaign-specific backgrounds.',
+              },
+              {
+                title: 'Create lifestyle settings',
+                text: 'Place shoes, bags, cosmetics and accessories into realistic environments that communicate their intended use and audience.',
+              },
+              {
+                title: 'Maintain product accuracy',
+                text: 'Keep the product design and colour consistent when creating alternate backgrounds, model visuals or promotional compositions.',
+              },
+            ],
+          },
+          {
+            heading: 'Social Media & Blog Layout',
+            image: '/images/articles/x3-multicategory-step-publishing.jpg',
+            imageAlt: 'Multi-category product visuals formatted for blogs, ecommerce and short social videos',
+            items: [
+              {
+                title: 'Format for each channel',
+                text: 'Prepare square and portrait posts, vertical short videos, wide blog banners, lightweight messaging assets and ecommerce images.',
+              },
+              {
+                title: 'Use consistent templates',
+                text: 'Keep colours, spacing and product positioning consistent across launches, seasonal campaigns and catalogue updates.',
+              },
+              {
+                title: 'Write product-led copy',
+                text: 'Highlight the material, function, size, design benefit or use case, then finish with a clear enquiry or purchase action.',
+              },
+              {
+                title: 'Publish and reuse',
+                text: 'Reuse the strongest images and videos across social posts, advertisements, blog articles, product pages and sales messages.',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        type: 'text',
+        heading: 'Where EasyCLIQ X3 Fits Into This',
+        image: '/images/x3/inside.jpg',
+        imageAlt: 'The large-format working chamber inside the EasyCLIQ X3',
+        imageSize: 'wide-short',
+        bodyStyle: 'bullets',
+        body: [
+          'Its large-format chamber, 60 cm turntable and 10 KG bottom-load capacity accommodate products ranging from cosmetics and accessories to footwear, handbags and electronics.',
+          'The precision robotic camera arm captures repeatable photographs and dynamic product videos without manually repositioning the camera for every angle.',
+          'Top and bottom turntables create complete 360° views for ecommerce pages, social-media demonstrations and interactive product presentations.',
+          'Ten independently controlled studio lights help reproduce different materials, colours and surface finishes accurately across product categories.',
+          'AI-powered background removal, focus stacking, saved templates and built-in editing reduce the work between photography and marketing.',
+          'The publish workflow prepares PNG, JPEG, GIF and video assets that can be resized and compressed for social media, blogs, ecommerce and digital campaigns.',
+        ],
+      },
+      {
+        type: 'usecases',
+        heading: 'Content One X3 Workflow Can Supply',
+        intro:
+          'Each finished product set can be adapted into several customer-facing formats.',
+        items: [
+          {
+            title: 'Instagram & Facebook',
+            text: 'Hero posts, carousels, festive creatives, Stories and short product-reveal videos.',
+          },
+          {
+            title: 'YouTube',
+            text: 'Vertical Shorts, 360° demonstrations and collection showcase videos.',
+          },
+          {
+            title: 'WhatsApp',
+            text: 'Lightweight product images and short videos for direct customer conversations and catalogues.',
+          },
+          {
+            title: 'Website & Ecommerce',
+            text: 'Consistent product photographs, detail views, clean-background images and interactive spins.',
+          },
+          {
+            title: 'Digital Advertising',
+            text: 'Reusable cutouts and videos for launches, festive campaigns and location-specific promotions.',
+          },
+          {
+            title: 'Sales & Catalogues',
+            text: 'Approved visual assets for digital catalogues, reseller presentations and showroom follow-ups.',
+          },
+        ],
+      },
+      {
+        type: 'text',
+        heading: 'A Content System, Not Another Individual Shoot',
+        image: '/images/x3/studio-lighting-rim.webp',
+        imageAlt: 'Controlled professional lighting inside the EasyCLIQ X3 studio',
+        imageSize: 'wide-short',
+        imagePosition: 'bottom',
+        body: [
+          'The main advantage of EasyCLIQ X3 is repeatability. Once a team saves the correct setup for a product category, future pieces can follow the same lighting, framing and output standard. A campaign no longer depends on recreating the original shoot from memory.',
+          'That consistency gives marketing teams a dependable content pipeline. New arrivals can move from the studio to social media and ecommerce while they are still commercially relevant, with photographs and videos that look like one coordinated brand.',
+        ],
+      },
+    ],
+    tags: ['EasyCLIQ X3', 'Product Photography', 'Social Media', 'Multi-Category Ecommerce'],
+  },
+  {
+    slug: 'complete-product-photography-checklist-ecommerce',
+    title: 'A Complete Product Photography Checklist for Ecommerce Businesses',
+    excerpt:
+      'A practical shoot-to-publish checklist covering product preparation, shot planning, image dimensions, file naming, compression and final ecommerce quality checks.',
+    category: 'how-to',
+    categoryLabel: 'Marketing Guide',
+    also: ['guides', 'news'],
+    date: '2026-09-03',
+    dateLabel: '3 Sep 2026',
+    readingTime: 8,
+    author: 'Magnic Technologies',
+    featured: false,
+    image: '/images/articles/ecommerce-product-photography-checklist-hero.jpg',
+    imageAlt:
+      'An organised ecommerce photography workflow built around an EasyCLIQ X3 studio, prepared products, a checklist and publish-ready images',
+    imageFit: 'cover',
+    body: [
+      'Successful ecommerce photography is not only about taking an attractive picture. Every product needs to move through the same repeatable process—from cleaning and shot planning to file naming, compression and publishing.',
+      'This checklist helps retailers, manufacturers and ecommerce teams create complete, consistent product listings while reducing missed angles, reshoots, oversized files and publishing delays.',
+    ],
+    sections: [
+      {
+        type: 'steps',
+        heading: 'The Complete Shoot-to-Publish Checklist',
+        intro:
+          'Use these four stages for every product. Keeping the order consistent makes the workflow easier to train, repeat and scale.',
+        groups: [
+          {
+            heading: 'Preparation & Product Readiness',
+            items: [
+              {
+                title: 'Inspect the product',
+                text: 'Check for dust, fingerprints, loose threads, scratches, uneven labels, packaging marks or anything that will become obvious in a close-up image.',
+              },
+              {
+                title: 'Clean and assemble it',
+                text: 'Polish reflective surfaces, shape soft products, fasten straps, align moving parts and prepare every accessory that belongs in the listing.',
+              },
+              {
+                title: 'Confirm product accuracy',
+                text: 'Match the item against its SKU, colour, size and variant information before photography begins.',
+              },
+              {
+                title: 'Choose the presentation',
+                text: 'Select the background, surface, support, hanging method or turntable that shows the product naturally without distracting from it.',
+              },
+            ],
+          },
+          {
+            heading: 'Shot List & Visual Coverage',
+            items: [
+              {
+                title: 'Capture the hero view',
+                text: 'Create one clean image that immediately communicates the product’s shape, colour and most recognisable features.',
+              },
+              {
+                title: 'Add essential angles',
+                text: 'Photograph the front, back, both sides and top or bottom whenever those views help the customer evaluate the product.',
+              },
+              {
+                title: 'Record important details',
+                text: 'Include close-ups of materials, texture, fasteners, controls, stitching, stones, labels or workmanship.',
+              },
+              {
+                title: 'Show scale and use',
+                text: 'Add an in-context or lifestyle image when customers need help understanding the product’s size, fit or intended use.',
+              },
+              {
+                title: 'Plan movement',
+                text: 'Capture a 360° spin or short video for products where shape, mechanism, shine or movement cannot be explained by still images alone.',
+              },
+            ],
+          },
+          {
+            heading: 'Image Size, Naming & Compression',
+            items: [
+              {
+                title: 'Create one high-quality master',
+                text: 'Keep a full-resolution, colour-corrected original before making marketplace, website or social-media versions.',
+              },
+              {
+                title: 'Use consistent dimensions',
+                text: 'Choose one aspect ratio and canvas size for each sales channel so product grids remain aligned and professional.',
+              },
+              {
+                title: 'Name files clearly',
+                text: 'Use a predictable structure such as SKU-colour-view-number instead of camera-generated filenames.',
+              },
+              {
+                title: 'Choose the right format',
+                text: 'Use JPEG or WebP for most photographs, PNG when transparency is required, and GIF or video for movement.',
+              },
+              {
+                title: 'Compress carefully',
+                text: 'Reduce file weight enough for fast loading while checking that edges, textures, gradients and small details remain clean.',
+              },
+            ],
+          },
+          {
+            heading: 'Publishing & Final Quality Check',
+            items: [
+              {
+                title: 'Check the complete set',
+                text: 'Confirm that every required angle and variant is present and that no image belongs to a different SKU.',
+              },
+              {
+                title: 'Review colour and sharpness',
+                text: 'Compare the images with the physical product and inspect important details at full size.',
+              },
+              {
+                title: 'Test the crop',
+                text: 'Preview the listing on desktop and mobile to ensure the product is not cut off by responsive thumbnails.',
+              },
+              {
+                title: 'Add useful metadata',
+                text: 'Write descriptive alternative text and product information that helps accessibility, search and internal asset management.',
+              },
+              {
+                title: 'Verify the live page',
+                text: 'After publishing, open the actual listing and confirm image order, loading speed, zoom quality, 360° playback and mobile behaviour.',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        type: 'usecases',
+        heading: 'The Minimum Image Set for a Strong Product Listing',
+        intro:
+          'The exact number depends on the product, but a useful ecommerce set normally includes these visual roles.',
+        items: [
+          {
+            title: 'Hero Image',
+            text: 'A clear primary view with consistent framing and enough space around the product.',
+          },
+          {
+            title: 'Alternate Angles',
+            text: 'Views that explain the product’s full shape, construction and functional areas.',
+          },
+          {
+            title: 'Detail Close-Ups',
+            text: 'Sharp images of materials, finishes, features and quality indicators.',
+          },
+          {
+            title: 'Scale or Context',
+            text: 'A visual that helps customers understand dimensions, fit or real-world use.',
+          },
+          {
+            title: 'Clean Cutout',
+            text: 'A transparent or plain-background asset for listings, catalogues and campaigns.',
+          },
+          {
+            title: '360° or Video',
+            text: 'Movement-based content for products that benefit from inspection from every angle.',
+          },
+        ],
+      },
+      {
+        type: 'text',
+        heading: 'Where EasyCLIQ Fits Into This Checklist',
+        bodyStyle: 'bullets',
+        body: [
+          'Controlled studio lighting helps teams reproduce colour and surface details consistently from one product to the next.',
+          'Camera positioning and automated rotation make it easier to repeat planned angles, close-ups, 360° spins and product videos.',
+          'Focus stacking helps retain detail across products where one photograph cannot keep every important area sharp.',
+          'AI-powered background removal produces clean cutouts without sending every image through a separate manual editing process.',
+          'Saved templates can recall lighting and camera settings for each product category, reducing setup differences between operators and sessions.',
+          'Built-in resizing, compression and export tools shorten the path from the approved master image to a publish-ready ecommerce asset.',
+        ],
+      },
+      {
+        type: 'text',
+        heading: 'Make the Checklist Part of the Workflow',
+        body: [
+          'A checklist creates value only when the team uses it for every SKU. Keep the approved shot list and file rules close to the photography station, assign responsibility for the final quality check, and update the process whenever a marketplace or website requirement changes.',
+          'The result is not simply better photography. It is a dependable visual-content system that helps products reach the online store faster, keeps the catalogue consistent and gives customers enough information to buy with confidence.',
+        ],
+      },
+    ],
+    tags: ['Product Photography', 'Ecommerce Checklist', 'Image Optimisation', 'EasyCLIQ'],
+  },
+  {
+    slug: 'in-house-vs-outsourced-product-photography',
+    title: 'In-House vs Outsourced Product Photography: Which Is Better?',
+    excerpt:
+      'Compare turnaround time, consistency, total cost, creative control and scalability to choose the right product-photography model for your business.',
+    category: 'how-to',
+    categoryLabel: 'Comparison Guide',
+    also: ['guides', 'news'],
+    date: '2026-09-03',
+    dateLabel: '3 Sep 2026',
+    readingTime: 8,
+    author: 'Magnic Technologies',
+    featured: false,
+    image: '/images/articles/in-house-vs-outsourced-product-photography-hero.jpg',
+    imageAlt:
+      'A balanced comparison between products prepared for an external studio and products photographed in-house using an EasyCLIQ X3 studio',
+    imageFit: 'cover',
+    body: [
+      'Outsourcing and in-house product photography can both produce excellent results. The better choice depends on how often you launch products, how quickly content is needed, how specialised the creative work is and whether your team can maintain a repeatable internal process.',
+      'The comparison should therefore consider the complete workflow—not only the price of one photograph. Shipping, coordination, reshoots, staff time, equipment, training, editing and publishing all affect the real cost and speed of production.',
+    ],
+    sections: [
+      {
+        type: 'comparison',
+        heading: 'In-House and Outsourced Photography Compared',
+        intro:
+          'Use these factors to evaluate the model that fits your catalogue, team and content calendar.',
+        beforeLabel: 'Outsourced',
+        afterLabel: 'In-House',
+        pairs: [
+          {
+            before:
+              'Turnaround includes preparing a brief, packing or transporting products, studio scheduling, review and revision time.',
+            after:
+              'Products can be photographed as soon as they arrive, making same-day listings and campaign updates possible.',
+          },
+          {
+            before:
+              'A skilled external studio can deliver a polished style, but consistency depends on using the same team, brief and setup each time.',
+            after:
+              'Saved setups and one internal standard can keep framing, lighting and output consistent across routine catalogue work.',
+          },
+          {
+            before:
+              'Costs are project-based and easy to approve for occasional shoots, but repeat shoots, logistics and revisions accumulate as volume grows.',
+            after:
+              'Equipment and training require an initial investment, while the cost per product can fall as the same system handles more SKUs.',
+          },
+          {
+            before:
+              'Creative direction is agreed through briefs and review rounds, which is useful for specialist campaigns but can slow small changes.',
+            after:
+              'The team can test angles, update a shot or respond to a product change immediately without booking another session.',
+          },
+          {
+            before:
+              'Extra volume depends on studio availability, delivery coordination and the supplier’s capacity during busy seasons.',
+            after:
+              'Daily output can grow through templates, trained operators and a defined internal queue, provided the equipment matches the catalogue.',
+          },
+          {
+            before:
+              'Specialist photographers, stylists, models and elaborate locations are available when a campaign requires high-concept creative production.',
+            after:
+              'Routine product listings, detail images and 360° views are easier to standardise, while complex campaigns may still need external specialists.',
+          },
+        ],
+      },
+      {
+        type: 'usecases',
+        heading: 'When Outsourcing Is the Better Choice',
+        intro:
+          'External production remains valuable when the work depends more on specialist creativity than repeated catalogue output.',
+        items: [
+          {
+            title: 'Occasional Shoots',
+            text: 'A small number of launches may not justify permanent equipment, space and training.',
+          },
+          {
+            title: 'Campaign Production',
+            text: 'Models, locations, set construction and complex art direction benefit from a specialist crew.',
+          },
+          {
+            title: 'Limited Internal Capacity',
+            text: 'Outsourcing can protect the team’s time when no one can own photography and quality control.',
+          },
+        ],
+      },
+      {
+        type: 'usecases',
+        heading: 'When In-House Photography Is the Better Choice',
+        intro:
+          'Internal production is strongest when speed, repeatability and ongoing catalogue volume matter every week.',
+        items: [
+          {
+            title: 'Frequent New Arrivals',
+            text: 'Products can move from receiving to photography and publishing without waiting for an external booking.',
+          },
+          {
+            title: 'High SKU Volume',
+            text: 'A repeatable station can reduce coordination time and the cost per finished product set.',
+          },
+          {
+            title: 'Fast Content Updates',
+            text: 'The team can reshoot variants, promotions and customer requests while the product is still on site.',
+          },
+        ],
+      },
+      {
+        type: 'text',
+        heading: 'Calculate the Real Cost Per Finished SKU',
+        bodyStyle: 'bullets',
+        body: [
+          'For outsourcing, include photography fees, product transport, packing, insurance, styling, editing, revisions and the internal time spent coordinating each shoot.',
+          'For in-house production, include equipment, camera, workspace, training, operator time, software, maintenance and the expected number of products photographed over the system’s useful life.',
+          'Compare complete approved product sets—not individual clicks. One SKU may require a hero image, alternate angles, details, a clean cutout and a 360° spin.',
+          'Measure missed opportunities as well. A lower quoted price may still be expensive if products wait several days before they can be listed or promoted.',
+        ],
+      },
+      {
+        type: 'text',
+        heading: 'Where EasyCLIQ Fits Into an In-House Workflow',
+        bodyStyle: 'bullets',
+        body: [
+          'A controlled photography chamber reduces the need to rebuild lighting and backgrounds for every routine product.',
+          'Automated camera positioning and turntables support repeatable angles, 360° spins and product videos with less manual handling.',
+          'Saved templates help different operators produce a consistent catalogue style across repeated product categories.',
+          'Focus stacking, background removal and built-in editing reduce the amount of post-production required after capture.',
+          'Publish-ready exports help the team move approved images into ecommerce listings, catalogues and marketing channels more quickly.',
+          'Different EasyCLIQ models allow the workflow to be matched to product size, catalogue variety, available space and production volume.',
+        ],
+      },
+      {
+        type: 'text',
+        heading: 'For Many Businesses, the Best Answer Is Hybrid',
+        body: [
+          'The choice does not have to be permanent or absolute. A practical hybrid model keeps frequent catalogue photography, reshoots and 360° content in-house while using external photographers for major campaigns, model shoots and location-based creative work.',
+          'This approach gives the business speed and control for daily ecommerce operations without giving up specialist creative production when a campaign genuinely requires it. The right decision is the one that removes the largest bottleneck in the current content workflow.',
+        ],
+      },
+    ],
+    tags: ['Product Photography', 'In-House Photography', 'Outsourcing', 'EasyCLIQ'],
   },
 ]
 
