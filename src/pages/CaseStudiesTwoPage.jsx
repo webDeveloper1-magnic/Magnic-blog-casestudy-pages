@@ -52,7 +52,24 @@ function ReviewVideo({ study }) {
   const [playing, setPlaying] = useState(false)
   const [thumbFailed, setThumbFailed] = useState(false)
 
-  if (!study.video?.youtubeId) return null
+  if (!study.video) return null
+
+  if (study.video.src) {
+    return (
+      <video
+        controls
+        preload="metadata"
+        poster={study.video.poster ?? study.thumb}
+        aria-label={study.video.title}
+        className="block aspect-video w-full rounded-card border border-line bg-black object-contain shadow-card"
+      >
+        <source src={study.video.src} type={study.video.type ?? 'video/mp4'} />
+        Your browser does not support embedded video.
+      </video>
+    )
+  }
+
+  if (!study.video.youtubeId) return null
 
   if (playing) {
     return (
@@ -162,9 +179,11 @@ function ReviewRow({ study, flipped }) {
                 {study.headline}
               </p>
             )}
-            <p className="mt-3 text-xs italic text-ink-light">
-              Customer testimonial to follow
-            </p>
+            {!study.video && (
+              <p className="mt-3 text-xs italic text-ink-light">
+                Customer testimonial to follow
+              </p>
+            )}
           </div>
         )}
 
@@ -249,7 +268,11 @@ function ReviewRow({ study, flipped }) {
 
       {/* Media column */}
       <div className={flipped ? 'lg:order-1' : ''}>
-        {study.video?.youtubeId ? <ReviewVideo study={study} /> : <ClientPanel study={study} />}
+        {study.video?.youtubeId || study.video?.src ? (
+          <ReviewVideo study={study} />
+        ) : (
+          <ClientPanel study={study} />
+        )}
       </div>
     </article>
   )

@@ -47,6 +47,37 @@ export const caseStudies = [
       'Before EasyCLIQ, our in-house photographer found it difficult to set the right light exposure for perfect detailing. EasyCLIQ enabled us to enhance the actual original colour of the antique jewellery. We have increased our output by nearly 70%. Now our marketing person can even shoot the professional photos with little effort.',
   },
   {
+    slug: 'sakthi-jewellers',
+    company: 'Sakthi Jewellers',
+    person: 'Sakthi Jewellers team',
+    role: 'Customer testimonial',
+    industry: 'retailer',
+    industryLabel: 'Retailer',
+    line: 'easycliq',
+    location: 'India',
+    region: 'india',
+    product: 'EasyCLIQ X1',
+    productHref: '/products/easycliq-x1',
+    logo: null,
+    thumb: '/images/articles/cmp-360.jpg',
+    video: {
+      src: '/images/sakthijewellersvideos/sakthi_jewellery_review.mp4',
+      type: 'video/mp4',
+      poster: '/images/articles/cmp-360.jpg',
+      title: 'Sakthi Jewellers on using EasyCLIQ content for jewellery marketing',
+    },
+    headline: 'In-house jewellery photos and videos supporting everyday social-media marketing',
+    challenge:
+      'Promoting new jewellery collections consistently requires a dependable supply of clear product images and short videos that the marketing team can use immediately.',
+    solution:
+      'EasyCLIQ X1 brings photography and video creation in-house, giving the team reusable jewellery visuals for social-media posts, campaigns and customer communication.',
+    metrics: [
+      { value: 'In-house', label: 'Content creation' },
+      { value: 'Photo + Video', label: 'Marketing assets' },
+      { value: 'Social', label: 'Publishing ready' },
+    ],
+  },
+  {
     slug: 'joy-alukkas',
     company: 'Joy Alukkas',
     person: 'Head Office team',

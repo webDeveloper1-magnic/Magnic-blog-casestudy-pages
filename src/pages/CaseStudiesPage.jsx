@@ -88,7 +88,24 @@ function StatsBand() {
 
 function StoryVideo({ study }) {
   const [playing, setPlaying] = useState(false)
-  if (!study.video?.youtubeId) return null
+  if (!study.video) return null
+
+  if (study.video.src) {
+    return (
+      <video
+        controls
+        preload="metadata"
+        poster={study.video.poster ?? study.thumb}
+        aria-label={study.video.title}
+        className="block aspect-video w-full rounded-card border border-line bg-black object-contain shadow-card"
+      >
+        <source src={study.video.src} type={study.video.type ?? 'video/mp4'} />
+        Your browser does not support embedded video.
+      </video>
+    )
+  }
+
+  if (!study.video.youtubeId) return null
 
   // Facade: show the thumbnail until clicked, so seven embeds do not each load
   // the YouTube player when the page opens.
@@ -169,7 +186,7 @@ function CaseStudyCard({ study }) {
   // A record with no story yet renders as a compact deployment entry rather than a
   // full case study, so the layout never leaves an empty column or blank headings.
   const hasStory = Boolean(study.headline || study.challenge || study.solution)
-  const hasVideo = Boolean(study.video?.youtubeId)
+  const hasVideo = Boolean(study.video?.youtubeId || study.video?.src)
 
   return (
     <article className="card">
@@ -191,7 +208,7 @@ function CaseStudyCard({ study }) {
           </div>
         </div>
         <div className="flex flex-wrap gap-2">
-          <span className="inline-block rounded bg-teal px-2.5 py-1 font-heading text-[11px] font-bold uppercase tracking-[0.09em] text-white">
+          <span className="inline-flex items-center justify-center rounded bg-teal px-2.5 py-1 text-center font-heading text-[11px] font-bold uppercase tracking-[0.09em] text-white">
             {study.industryLabel}
           </span>
           {/* A real button rather than a flat chip — it navigates, so it should look

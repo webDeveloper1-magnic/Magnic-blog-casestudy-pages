@@ -1985,6 +1985,9 @@ export const posts = [
         groups: [
           {
             heading: 'Preparation & Product Readiness',
+            image: '/images/articles/ecommerce-checklist-preparation.jpg',
+            imageAlt:
+              'Footwear, a handbag, cosmetics and electronics prepared with cleaning tools, colour references, SKU tags and a photography shot list',
             items: [
               {
                 title: 'Inspect the product',
@@ -2031,6 +2034,9 @@ export const posts = [
           },
           {
             heading: 'Image Size, Naming & Compression',
+            image: '/images/articles/ecommerce-checklist-publishing.jpg',
+            imageAlt:
+              'Finished ecommerce product images being organised, resized, optimised and published from a professional content workstation',
             items: [
               {
                 title: 'Create one high-quality master',
@@ -2248,6 +2254,9 @@ export const posts = [
       {
         type: 'text',
         heading: 'Calculate the Real Cost Per Finished SKU',
+        image: '/images/articles/outsourced-photography-coordination.jpg',
+        imageAlt:
+          'Products packed with shot briefs, schedules and approval sheets for an outsourced photography workflow',
         bodyStyle: 'bullets',
         body: [
           'For outsourcing, include photography fees, product transport, packing, insurance, styling, editing, revisions and the internal time spent coordinating each shoot.',
@@ -2259,6 +2268,9 @@ export const posts = [
       {
         type: 'text',
         heading: 'Where EasyCLIQ Fits Into an In-House Workflow',
+        image: '/images/articles/in-house-easycliq-product-capture.jpg',
+        imageAlt:
+          'EasyCLIQ X3 photographing a footwear product inside its chamber with other ecommerce products ready for capture',
         bodyStyle: 'bullets',
         body: [
           'A controlled photography chamber reduces the need to rebuild lighting and backgrounds for every routine product.',
@@ -2272,6 +2284,9 @@ export const posts = [
       {
         type: 'text',
         heading: 'For Many Businesses, the Best Answer Is Hybrid',
+        image: '/images/articles/hybrid-product-photography-workflow.jpg',
+        imageAlt:
+          'EasyCLIQ X3 handling routine in-house product photography beside a separate specialist campaign photography set',
         body: [
           'The choice does not have to be permanent or absolute. A practical hybrid model keeps frequent catalogue photography, reshoots and 360° content in-house while using external photographers for major campaigns, model shoots and location-based creative work.',
           'This approach gives the business speed and control for daily ecommerce operations without giving up specialist creative production when a campaign genuinely requires it. The right decision is the one that removes the largest bottleneck in the current content workflow.',
